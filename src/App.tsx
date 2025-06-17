@@ -1,7 +1,9 @@
+import Login from "./pages/auth/login";
+
 const App = () => {
   return (
     <>
-      <h2 className="text-3xl">Project Qus setup</h2>
+      <Login />
     </>
   );
 };
