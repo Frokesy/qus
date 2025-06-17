@@ -118,14 +118,14 @@ export const EyeIcon = () => (
   >
     <path
       d="M12 5C5.693 5 2.633 10.683 2.09 11.808C2.06098 11.8678 2.0459 11.9335 2.0459 12C2.0459 12.0665 2.06098 12.1322 2.09 12.192C2.632 13.317 5.692 19 12 19C18.308 19 21.367 13.317 21.91 12.192C21.939 12.1322 21.9541 12.0665 21.9541 12C21.9541 11.9335 21.939 11.8678 21.91 11.808C21.368 10.683 18.308 5 12 5Z"
-      stroke="white"
+      stroke="black"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
-      stroke="white"
+      stroke="black"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"

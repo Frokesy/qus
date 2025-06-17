@@ -1,6 +1,7 @@
 import AuthContainer from "../../../components/containers/AuthContainer";
 import {
   EmailIcon,
+  EyeIcon,
   Facebook,
   GoogleIcon,
 } from "../../../components/svgs/Icons";
@@ -46,11 +47,14 @@ const Login = () => {
             <label htmlFor="password" className="text-[14px] text-[#232323]">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              className="outline-none bg-[#ececec] rounded-md p-4 w-full"
-            />
+            <div className="flex space-x-2 justify-between bg-[#ececec] rounded-md p-4 w-full">
+              <input
+                type="password"
+                id="password"
+                className="outline-none w-[100%]"
+              />
+              <EyeIcon />
+            </div>
           </div>
           <div className="flex justify-end">
             <button className="bg-[#007bff] text-white px-6 py-3 font-semibold rounded-lg">
