@@ -7,11 +7,11 @@ interface MainContainerProps {
 
 const MainContainer = ({ children }: MainContainerProps) => {
   return (
-    <div>
+    <div className="bg-[#f1f1f1]">
       <Topbar />
       <div className="flex h-screen">
         <Sidebar />
-        <div className="w-[85%]">{children}</div>
+        <div className="w-[85%] p-10">{children}</div>
       </div>
     </div>
   );

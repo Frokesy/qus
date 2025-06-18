@@ -1,14 +1,16 @@
-import { Avatar } from "../../svgs/Icons";
+import { Avatar, CaretDown, HelpIcon } from "../../svgs/Icons";
 
 const Topbar = () => {
   return (
-    <div className="w-full h-[10%] bg-[#333333] flex justify-between items-center px-4">
-      <span className="text-white text-xl font-bold">Dashboard</span>
-      <div className="flex items-center">
-        <Avatar />
-        <span className="text-white text-sm font-medium mr-4">
-          Welcome, John Doe
-        </span>
+    <div className="w-[100%] py-3 flex justify-between px-4 border-b-2 border-[#808080]">
+      <img src="/assets/logo.png" alt="logo" className="w-[50px] h-[50px]" />
+      <div className="flex items-center space-x-10">
+        <HelpIcon />
+        <div className="flex items-center space-x-3 bg-[#1B1B2F] text-[#fff] py-2 px-6 rounded-full">
+          <Avatar />
+          <span className="ml-2">John Doe</span>
+          <CaretDown />
+        </div>
       </div>
     </div>
   );
