@@ -19,7 +19,7 @@ const Dashboard = () => {
 
       {/* Summary */}
       <div className="flex justify-between space-x-10 mt-10">
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-10">
+        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] font-semibold">Quizzes</h2>
           <div className="flex justify-between space-x-3 mt-4">
             <div className="flex flex-col text-center space-y-1">
@@ -47,7 +47,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-10">
+        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] font-semibold">Tasks</h2>
           <div className="flex justify-between space-x-3 mt-4">
             <div className="flex flex-col text-center space-y-1">
@@ -75,11 +75,11 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-10">
+        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] font-semibold">Free Spins Today</h2>
           <span className="text-[56px] font-semibold">1</span>
         </div>
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-10">
+        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] pb-4 font-semibold">Total Earnings</h2>
           <span className="text-[40px] font-semibold">N10,000.00</span>
         </div>
@@ -97,14 +97,14 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-[#fff] rounded-2xl space-y-3 p-4">
-            <h2 className="text-[20px] font-semibold">New Task Available</h2>
+            <h2 className="text-[20px]">New Task Available</h2>
             <p>Take a photo of a public place</p>
             <button className="bg-blue-500 text-white w-[100%] font-semibold px-4 py-2 rounded-md">
               Start Task
             </button>
           </div>
           <div className="bg-[#fff] rounded-2xl space-y-3 p-4">
-            <h2 className="text-[20px] font-semibold">Daily Spin</h2>
+            <h2 className="text-[20px]">Daily Spin</h2>
             <p>You've not spun today!</p>
             <button className="bg-blue-500 text-white w-[100%] font-semibold px-4 py-2 rounded-md">
               Spin now
