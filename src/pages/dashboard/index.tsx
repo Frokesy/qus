@@ -14,7 +14,7 @@ const Dashboard = () => {
     <MainContainer>
       <h2 className="text-[30px] font-semibold">Welcome back, John Doe!</h2>
       <p className="text-[20px] text-[#808080] italic">
-        You're N2,350 away from your next payout.
+        You're $2,350 away from your next payout.
       </p>
 
       {/* Summary */}
@@ -81,7 +81,7 @@ const Dashboard = () => {
         </div>
         <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] pb-4 font-semibold">Total Earnings</h2>
-          <span className="text-[40px] font-semibold">N10,000.00</span>
+          <span className="text-[40px] font-semibold">$10,000.00</span>
         </div>
       </div>
 

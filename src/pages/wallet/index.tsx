@@ -7,9 +7,9 @@ const Wallet = () => {
       <div className="flex justify-between items-baseline">
         <div className="w-[30%] flex flex-col border border-[#ccc] rounded-2xl mt-10 p-6">
           <span className="text-[18px] font-semibold">Available Balance</span>
-          <span className="text-[40px] font-semibold">N25,000.00</span>
+          <span className="text-[40px] font-semibold">$25,000.00</span>
           <span className="italic text-blue-600 text-[20px]">
-            Frozen Balance: N10,000.00
+            Frozen Balance: $10,000.00
           </span>
         </div>
 
