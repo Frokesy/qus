@@ -4,6 +4,7 @@ import Signup from "./pages/auth/signup";
 import Dashboard from "./pages/dashboard";
 import { AnimatePresence } from "framer-motion";
 import Wallet from "./pages/wallet";
+import Tasks from "./pages/tasks";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -11,6 +12,7 @@ const App = () => {
     { path: "/signup", element: <Signup /> },
     { path: "/dashboard", element: <Dashboard /> },
     { path: "/wallet", element: <Wallet /> },
+    { path: "/tasks", element: <Tasks /> },
   ]);
 
   return (
