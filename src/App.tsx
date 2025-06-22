@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import Wallet from "./pages/wallet";
 import Tasks from "./pages/tasks";
 import Settings from "./pages/settings";
+import Profile from "./pages/profile";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -15,6 +16,7 @@ const App = () => {
     { path: "/wallet", element: <Wallet /> },
     { path: "/tasks", element: <Tasks /> },
     { path: "/settings", element: <Settings /> },
+    { path: "/profile", element: <Profile /> },
   ]);
 
   return (
