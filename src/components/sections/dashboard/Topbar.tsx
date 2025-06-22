@@ -7,6 +7,7 @@ import {
 } from "../../svgs/Icons";
 import UserDropdown from "../../dropdowns/UserDropdown";
 import NotificationDropdown from "../../dropdowns/NotificationDropdown";
+import { User2 } from "lucide-react";
 
 const Topbar = () => {
   const [showUserDropdown, setShowUserDropdown] = useState<boolean>(false);
@@ -15,9 +16,11 @@ const Topbar = () => {
   return (
     <div className="w-[100%] py-3 flex justify-between px-4 border-b-2 border-[#808080]">
       <img src="/assets/logo.png" alt="logo" className="w-[50px] h-[50px]" />
-      <div className="flex items-center space-x-10">
-        <HelpIcon />
-        <div className="relative">
+      <div className="flex items-center lg:space-x-10">
+        <div className="lg:block hidden">
+          <HelpIcon />
+        </div>
+        <div className="relative lg:block flex items-center space-x-2">
           <div
             className="cursor-pointer"
             onClick={() =>
@@ -27,9 +30,14 @@ const Topbar = () => {
             <NotificationIcon />
           </div>
 
-          {showNotificationDropdown && <NotificationDropdown />}
+          <div className="lg:block hidden">
+            {showNotificationDropdown && <NotificationDropdown />}
+          </div>
+          <div className="p-2 bg-[#fff] rounded-full lg:hidden shadow-md">
+            <User2 />
+          </div>
         </div>
-        <div className="relative">
+        <div className="hidden lg:block relative">
           <div
             onClick={() => setShowUserDropdown(!showUserDropdown)}
             className="flex items-center space-x-3 bg-[#1B1B2F] cursor-pointer text-[#fff] py-2 px-6 rounded-full"
