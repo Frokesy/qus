@@ -10,6 +10,7 @@ const Tasks = () => {
       bg: "bg-green-50",
       cta: "Take Quiz",
       icon: "🧪",
+      link: "/quizpage",
     },
     {
       title: "Photo Hunt",
@@ -25,6 +26,7 @@ const Tasks = () => {
       bg: "bg-indigo-50",
       cta: "Take Quiz",
       icon: "💻",
+      link: "/quizpage",
     },
     {
       title: "Transcribe Handwritten Note",
@@ -40,6 +42,7 @@ const Tasks = () => {
       bg: "bg-blue-50",
       cta: "Take Quiz",
       icon: "🌍",
+      link: "/quizpage",
     },
     {
       title: "Spin Challenge",
@@ -47,6 +50,7 @@ const Tasks = () => {
       bg: "bg-pink-50",
       cta: "Spin Now",
       icon: "🎯",
+      link: "/quizpage",
     },
     {
       title: "Local Language Quiz",
@@ -54,6 +58,7 @@ const Tasks = () => {
       bg: "bg-purple-50",
       cta: "Take Quiz",
       icon: "🗣️",
+      link: "/quizpage",
     },
     {
       title: "Short Video Task",
@@ -69,6 +74,7 @@ const Tasks = () => {
       bg: "bg-cyan-50",
       cta: "Take Quiz",
       icon: "🧠",
+      link: "/quizpage",
     },
     {
       title: "Feedback Survey",
@@ -92,6 +98,7 @@ const Tasks = () => {
       bg: "bg-red-50",
       cta: "Spin Now",
       icon: "🎰",
+      link: "/quizpage",
     },
   ];
 
