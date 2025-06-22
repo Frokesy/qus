@@ -12,14 +12,22 @@ const Dashboard = () => {
   ];
   return (
     <MainContainer>
-      <h2 className="text-[30px] font-semibold">Welcome back, John Doe!</h2>
-      <p className="text-[20px] text-[#808080] italic">
+      <h2 className="lg:text-[30px] text-[20px] font-semibold">
+        Welcome back, John Doe!
+      </h2>
+      <p className="lg:text-[20px] text-[#808080] italic">
         You're $2,350 away from your next payout.
       </p>
 
       {/* Summary */}
-      <div className="flex justify-between space-x-10 mt-10">
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
+      <div className="flex lg:flex-row flex-col justify-between lg:space-y-0 space-y-6 lg:space-x-10 mt-10">
+        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
+          <h2 className="text-[20px] pb-4 font-semibold">Total Earnings</h2>
+          <span className="lg:text-[40px] text-[32px] font-semibold">
+            $10,000.00
+          </span>
+        </div>
+        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] font-semibold">Quizzes</h2>
           <div className="flex justify-between space-x-3 mt-4">
             <div className="flex flex-col text-center space-y-1">
@@ -47,8 +55,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
+        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] font-semibold">Tasks</h2>
+
           <div className="flex justify-between space-x-3 mt-4">
             <div className="flex flex-col text-center space-y-1">
               <span className="text-[20px] text-blue-600 font-semibold">
@@ -75,19 +84,15 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
+        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] font-semibold">Free Spins Today</h2>
-          <span className="text-[56px] font-semibold">1</span>
-        </div>
-        <div className="w-[25%] bg-[#fff] rounded-2xl p-6">
-          <h2 className="text-[20px] pb-4 font-semibold">Total Earnings</h2>
-          <span className="text-[40px] font-semibold">$10,000.00</span>
+          <span className="lg:text-[56px] text-[32px] font-semibold">1</span>
         </div>
       </div>
 
-      <div className="flex justify-between items-baseline space-x-4">
+      <div className="flex lg:flex-row flex-col justify-between items-baseline space-x-4">
         {/* CTA */}
-        <div className="grid grid-cols-3 gap-10 w-[70%] mt-10">
+        <div className="grid lg:grid-cols-3 grid-cols-1 gap-10 w-[100%] lg:w-[70%] mt-10">
           <div className="bg-[#fff] rounded-2xl space-y-3 p-4">
             <h2 className="text-[20px]">Continue Quiz</h2>
             <p>You left off at question 5 of 10</p>
@@ -111,7 +116,7 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-        <div className="border border-[#ccc] mt-10 w-[25%] rounded-2xl space-y-3 p-4">
+        <div className="border border-[#ccc] mt-10 lg:w-[25%] mb-20 lg:mb-0 rounded-2xl space-y-3 p-4">
           <h2 className="text-[20px] font-semibold">Recent Activities</h2>
 
           <div className="flex flex-col space-y-3">

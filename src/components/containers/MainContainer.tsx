@@ -11,7 +11,9 @@ const MainContainer = ({ children }: MainContainerProps) => {
       <Topbar />
       <div className="flex h-[95vh] lg:overflow-hidden overflow-y-auto lg:flex-row flex-col-reverse">
         <Sidebar />
-        <div className="w-[85%] p-10">{children}</div>
+        <div className="lg:w-[85%] lg:p-10 p-4 lg:mt-0 mt-[10vh]">
+          {children}
+        </div>
       </div>
     </div>
   );
