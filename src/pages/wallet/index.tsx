@@ -4,8 +4,7 @@ import MainContainer from "../../components/containers/MainContainer";
 const WalletPage = () => {
   return (
     <MainContainer>
-      <div className="space-y-6">
-        {/* Header */}
+      <div className="space-y-6 h-[80vh] overflow-y-auto lg:pb-0 pb-20">
         <h2 className="text-2xl font-semibold text-gray-800">
           Wallet Overview
         </h2>
