@@ -7,6 +7,7 @@ import Wallet from "./pages/wallet";
 import Tasks from "./pages/tasks";
 import Settings from "./pages/settings";
 import Profile from "./pages/profile";
+import ChangePassword from "./pages/settings/change-password";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -17,6 +18,7 @@ const App = () => {
     { path: "/tasks", element: <Tasks /> },
     { path: "/settings", element: <Settings /> },
     { path: "/profile", element: <Profile /> },
+    { path: "/settings/change-password", element: <ChangePassword /> },
   ]);
 
   return (

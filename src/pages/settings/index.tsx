@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import MainContainer from "../../components/containers/MainContainer";
 import { CaretDown } from "../../components/svgs/Icons";
 
@@ -19,12 +20,15 @@ const Settings = () => {
             <CaretDown color="black" />
           </div>
         </div>
-        <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
+        <NavLink
+          to="/settings/change-password"
+          className="flex items-center justify-between border-b-2 border-[#ccc] pb-4"
+        >
           <span className="text-[16px]">Change Password</span>
           <div className="rotate-270">
             <CaretDown color="black" />
           </div>
-        </div>
+        </NavLink>
         <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
           <span className="text-[16px]">Enable Two-Factor Authentication</span>
           <div className="rotate-270">
