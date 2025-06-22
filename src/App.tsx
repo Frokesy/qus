@@ -8,6 +8,7 @@ import Tasks from "./pages/tasks";
 import Settings from "./pages/settings";
 import Profile from "./pages/profile";
 import ChangePassword from "./pages/settings/change-password";
+import EditProfile from "./pages/settings/edit-profile";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const App = () => {
     { path: "/settings", element: <Settings /> },
     { path: "/profile", element: <Profile /> },
     { path: "/settings/change-password", element: <ChangePassword /> },
+    { path: "/settings/edit-profile", element: <EditProfile /> },
   ]);
 
   return (

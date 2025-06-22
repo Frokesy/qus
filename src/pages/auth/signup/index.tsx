@@ -34,7 +34,7 @@ const Signup = () => {
 
         <div className="space-y-6 mt-6 lg:w-auto w-[100%]">
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
-            <label htmlFor="email" className="text-[14px] text-[#232323]">
+            <label htmlFor="name" className="text-[14px] text-[#232323]">
               Full Name
             </label>
             <input

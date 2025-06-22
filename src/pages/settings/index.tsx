@@ -8,12 +8,15 @@ const Settings = () => {
       <h1 className="text-[30px] font-semibold">Settings</h1>
 
       <div className="space-y-4 w-[50%] mt-10">
-        <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
-          <span className="text-[16px]">Account Information</span>
+        <NavLink
+          to="/settings/edit-profile"
+          className="flex items-center justify-between border-b-2 border-[#ccc] pb-4"
+        >
+          <span className="text-[16px]">Edit Account Information</span>
           <div className="rotate-270">
             <CaretDown color="black" />
           </div>
-        </div>
+        </NavLink>
         <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
           <span className="text-[16px]">Update Payment Information</span>
           <div className="rotate-270">
