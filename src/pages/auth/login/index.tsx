@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import AuthContainer from "../../../components/containers/AuthContainer";
 import {
   EmailIcon,
@@ -57,9 +58,12 @@ const Login = () => {
             </div>
           </div>
           <div className="flex justify-end">
-            <button className="bg-[#007bff] text-white px-6 py-3 font-semibold rounded-lg">
+            <NavLink
+              to="/dashboard"
+              className="bg-[#007bff] text-white px-6 py-3 font-semibold rounded-lg"
+            >
               Sign In
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>
