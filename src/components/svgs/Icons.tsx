@@ -150,7 +150,7 @@ export const Facebook = () => (
   </svg>
 );
 
-export const CaretDown = () => (
+export const CaretDown = ({ color }: { color?: string }) => (
   <svg
     width="17"
     height="16"
@@ -160,7 +160,7 @@ export const CaretDown = () => (
   >
     <path
       d="M13.78 5.9668L9.4333 10.3135C8.91997 10.8268 8.07997 10.8268 7.56664 10.3135L3.21997 5.9668"
-      stroke="#fff"
+      stroke={color ? color : "#fff"}
       strokeWidth="1.5"
       strokeMiterlimit="10"
       strokeLinecap="round"
