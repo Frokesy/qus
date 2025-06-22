@@ -54,6 +54,8 @@ export default function SpinnerWheel() {
     }, 3100);
   };
 
+  console.log(angle);
+
   return (
     <div className="flex flex-col items-center justify-center py-10 relative">
       <div className="absolute top-[30px] rotate-180 z-10 w-0 h-0 border-l-[15px] border-r-[15px] border-b-[25px] border-l-transparent border-r-transparent border-b-red-600" />
