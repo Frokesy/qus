@@ -1,44 +1,67 @@
+import { Wallet, Banknote, CreditCard, FileDown, Clock } from "lucide-react";
 import MainContainer from "../../components/containers/MainContainer";
 
-const Wallet = () => {
+const WalletPage = () => {
   return (
     <MainContainer>
-      <h2 className="text-[30px] font-semibold">Wallet Overview</h2>
-      <div className="flex justify-between items-baseline">
-        <div className="w-[30%] flex flex-col border border-[#ccc] rounded-2xl mt-10 p-6">
-          <span className="text-[18px] font-semibold">Available Balance</span>
-          <span className="text-[40px] font-semibold">$25,000.00</span>
-          <span className="italic text-blue-600 text-[20px]">
-            Frozen Balance: $10,000.00
-          </span>
-        </div>
+      <div className="space-y-6">
+        {/* Header */}
+        <h2 className="text-2xl font-semibold text-gray-800">
+          Wallet Overview
+        </h2>
 
-        {/* Withdrawal options */}
-        <div className="w-[30%] flex flex-col border border-[#ccc] rounded-2xl mt-10 p-6">
-          <span className="text-[18px] font-semibold">Withdrawal Options</span>
-          <div className="flex flex-col mt-4">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md mb-2">
-              Withdraw with Card
-            </button>
-            <button className="bg-green-600 text-white px-4 py-2 rounded-md mb-2">
-              Withdraw with Wallet
-            </button>
-            <button className="bg-red-600 text-white px-4 py-2 rounded-md mb-2">
-              Withdraw with Bank Transfer
-            </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          <div className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-base text-gray-500">Available Balance</h3>
+                <p className="text-3xl font-bold text-gray-800">$25,000.00</p>
+                <p className="mt-1 text-sm italic text-blue-600">
+                  Frozen: $10,000.00
+                </p>
+              </div>
+              <Wallet className="w-10 h-10 text-blue-500" />
+            </div>
           </div>
-        </div>
 
-        {/* Transaction history */}
-        <div className="w-[30%] flex flex-col border border-[#ccc] rounded-2xl mt-10 p-6">
-          <span className="text-[18px] font-semibold">Transaction History</span>
-          <div className="flex flex-col mt-4">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md mb-2">
-              View Transactions
-            </button>
-            <button className="bg-green-600 text-white px-4 py-2 rounded-md mb-2">
-              Download Statement
-            </button>
+          {/* Withdrawal Options */}
+          <div className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h3 className="text-base font-medium text-gray-600 mb-4 flex items-center gap-2">
+              <Banknote className="w-5 h-5 text-green-600" />
+              Withdrawal Options
+            </h3>
+            <div className="space-y-3">
+              <button className="flex items-center gap-2 w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                <CreditCard className="w-5 h-5" />
+                Withdraw with Card
+              </button>
+              <button className="flex items-center gap-2 w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">
+                <Wallet className="w-5 h-5" />
+                Withdraw to Wallet
+              </button>
+              <button className="flex items-center gap-2 w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
+                <Banknote className="w-5 h-5" />
+                Withdraw to Bank
+              </button>
+            </div>
+          </div>
+
+          {/* Transaction Actions */}
+          <div className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h3 className="text-base font-medium text-gray-600 mb-4 flex items-center gap-2">
+              <Clock className="w-5 h-5 text-indigo-600" />
+              Transaction Actions
+            </h3>
+            <div className="space-y-3">
+              <button className="flex items-center gap-2 w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">
+                <Clock className="w-5 h-5" />
+                View Transactions
+              </button>
+              <button className="flex items-center gap-2 w-full bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">
+                <FileDown className="w-5 h-5" />
+                Download Statement
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -46,4 +69,4 @@ const Wallet = () => {
   );
 };
 
-export default Wallet;
+export default WalletPage;
