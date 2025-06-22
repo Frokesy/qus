@@ -8,6 +8,7 @@ import {
 import UserDropdown from "../../dropdowns/UserDropdown";
 import NotificationDropdown from "../../dropdowns/NotificationDropdown";
 import { User2 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const Topbar = () => {
   const [showUserDropdown, setShowUserDropdown] = useState<boolean>(false);
@@ -33,9 +34,12 @@ const Topbar = () => {
           <div className="lg:block hidden">
             {showNotificationDropdown && <NotificationDropdown />}
           </div>
-          <div className="p-2 bg-[#fff] rounded-full lg:hidden shadow-md">
+          <NavLink
+            to="/profile"
+            className="p-2 bg-[#fff] rounded-full lg:hidden shadow-md"
+          >
             <User2 />
-          </div>
+          </NavLink>
         </div>
         <div className="hidden lg:block relative">
           <div

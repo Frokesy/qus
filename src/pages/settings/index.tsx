@@ -13,13 +13,17 @@ const Settings = () => {
             to="/settings/edit-profile"
             className="flex items-center justify-between border-b-2 border-[#ccc] pb-4"
           >
-            <span className="text-[16px]">Edit Account Information</span>
+            <span className="lg:text-[16px] text-[14px]">
+              Edit Account Information
+            </span>
             <div className="rotate-270">
               <CaretDown color="black" />
             </div>
           </NavLink>
           <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
-            <span className="text-[16px]">Update Payment Information</span>
+            <span className="lg:text-[16px] text-[14px]">
+              Update Payment Information
+            </span>
             <div className="rotate-270">
               <CaretDown color="black" />
             </div>
@@ -28,13 +32,13 @@ const Settings = () => {
             to="/settings/change-password"
             className="flex items-center justify-between border-b-2 border-[#ccc] pb-4"
           >
-            <span className="text-[16px]">Change Password</span>
+            <span className="lg:text-[16px] text-[14px]">Change Password</span>
             <div className="rotate-270">
               <CaretDown color="black" />
             </div>
           </NavLink>
           <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
-            <span className="text-[16px]">
+            <span className="lg:text-[16px] text-[14px]">
               Enable Two-Factor Authentication
             </span>
             <div className="rotate-270">
@@ -42,7 +46,9 @@ const Settings = () => {
             </div>
           </div>
           <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
-            <span className="text-[16px] text-red-500">Logout</span>
+            <span className="lg:text-[16px] text-[14px] text-red-500">
+              Logout
+            </span>
             <div className="rotate-270">
               <CaretDown color="black" />
             </div>
