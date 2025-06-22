@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import MainContainer from "../../components/containers/MainContainer";
 import SpinnerWheel from "../../components/sections/tasks/SpinnerWheel";
 
@@ -16,6 +17,7 @@ const Tasks = () => {
       bg: "bg-orange-50",
       cta: "Start Task",
       icon: "📷",
+      link: "/taskspage",
     },
     {
       title: "Tech & Innovation Quiz",
@@ -30,6 +32,7 @@ const Tasks = () => {
       bg: "bg-yellow-50",
       cta: "Start Task",
       icon: "⌨️",
+      link: "/taskspage",
     },
     {
       title: "Geography Quiz",
@@ -58,6 +61,7 @@ const Tasks = () => {
       bg: "bg-rose-50",
       cta: "Start Task",
       icon: "🎥",
+      link: "/taskspage",
     },
     {
       title: "Math & Logic Quiz",
@@ -72,6 +76,7 @@ const Tasks = () => {
       bg: "bg-lime-50",
       cta: "Start Task",
       icon: "📝",
+      link: "/taskspage",
     },
     {
       title: "Landmark Photo Quest",
@@ -79,6 +84,7 @@ const Tasks = () => {
       bg: "bg-amber-50",
       cta: "Start Task",
       icon: "🏛️",
+      link: "/taskspage",
     },
     {
       title: "Spin & Win Bonus Round",
@@ -109,9 +115,12 @@ const Tasks = () => {
                 <div className="text-3xl">{item.icon}</div>
                 <h3 className="text-lg font-semibold mt-2">{item.title}</h3>
                 <p className="text-sm text-gray-600 mt-1">{item.desc}</p>
-                <button className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm">
+                <NavLink
+                  to={item.link}
+                  className="mt-4 flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm"
+                >
                   {item.cta}
-                </button>
+                </NavLink>
               </div>
             ))}
           </div>

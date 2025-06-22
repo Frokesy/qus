@@ -9,6 +9,7 @@ import Settings from "./pages/settings";
 import Profile from "./pages/profile";
 import ChangePassword from "./pages/settings/change-password";
 import EditProfile from "./pages/settings/edit-profile";
+import TaskPage from "./pages/tasks/taskspage";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const App = () => {
     { path: "/profile", element: <Profile /> },
     { path: "/settings/change-password", element: <ChangePassword /> },
     { path: "/settings/edit-profile", element: <EditProfile /> },
+    { path: "/taskspage", element: <TaskPage /> },
   ]);
 
   return (
