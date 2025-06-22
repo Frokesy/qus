@@ -22,7 +22,7 @@ const sampleQuiz: Question[] = [
 const QuizPage = () => {
   return (
     <MainContainer>
-      <div className="max-w-3xl mx-auto py-10 space-y-6">
+      <div className="max-w-3xl h-[80vh] overflow-y-auto mx-auto lg:py-10 space-y-6">
         <h2 className="text-2xl font-bold">Science & Nature Quiz</h2>
 
         {sampleQuiz.map((q, i) => (
@@ -46,9 +46,11 @@ const QuizPage = () => {
           </div>
         ))}
 
-        <button className="bg-green-600 text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition">
-          Submit Answers
-        </button>
+        <div className="flex justify-end">
+          <button className="bg-green-600 text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition">
+            Submit Answers
+          </button>
+        </div>
       </div>
     </MainContainer>
   );

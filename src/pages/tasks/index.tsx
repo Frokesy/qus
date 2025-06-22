@@ -104,7 +104,7 @@ const Tasks = () => {
 
   return (
     <MainContainer>
-      <div className="flex justify-between lg:flex-row flex-col-reverse space-x-10 h-[85vh] overflow-y-auto">
+      <div className="flex justify-between lg:flex-row flex-col-reverse space-x-10 h-[85vh] overflow-y-auto overflow-x-hidden pb-20 lg:pb-0 pt-4 lg:pt-0">
         <div className="space-y-4 w-full max-w-5xl">
           <div className="flex justify-between items-center">
             <h2 className="text-[24px] font-semibold">Available Tasks</h2>

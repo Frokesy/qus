@@ -14,7 +14,7 @@ const Topbar = () => {
   const [showNotificationDropdown, setShowNotificationDropdown] =
     useState<boolean>(false);
   return (
-    <div className="w-[100%] py-3 lg:relative fixed bg-[#fff] lg:bg-inherit flex justify-between px-4 border-b-2 border-[#808080]">
+    <div className="w-[100%] py-3 lg:relative fixed bg-[#fff] lg:bg-inherit z-50 flex justify-between px-4 border-b-2 border-[#808080]">
       <img src="/assets/logo.png" alt="logo" className="w-[50px] h-[50px]" />
       <div className="flex items-center lg:space-x-10">
         <div className="lg:block hidden">

@@ -10,7 +10,7 @@ import {
 
 const Sidebar = () => {
   return (
-    <div className="lg:w-[15%] bg-[#fff] lg:bg-inherit py-4 w-[100%] flex lg:flex-col flex-row justify-between fixed lg:relative bottom-0 lg:border-r-2 border-[#808080] text-[#667085] lg:pt-10 lg:h-[95vh]">
+    <div className="lg:w-[15%] bg-[#fff] lg:bg-inherit z-50 py-4 w-[100%] flex lg:flex-col flex-row justify-between fixed lg:relative bottom-0 lg:border-r-2 border-[#808080] text-[#667085] lg:pt-10 lg:h-[95vh]">
       <div className="lg:space-y-6 flex lg:flex-col flex-row justify-between w-[100%]">
         <NavLink
           to="/dashboard"

@@ -3,7 +3,7 @@ import MainContainer from "../../../components/containers/MainContainer";
 const TaskPage = () => {
   return (
     <MainContainer>
-      <div className="max-w-2xl mx-auto py-10 space-y-6">
+      <div className="max-w-3xl h-[80vh] overflow-y-auto mx-auto lg:py-10 space-y-6">
         <h2 className="text-2xl font-bold">Photo Hunt Task</h2>
         <p className="text-gray-600">
           Take a clear photo of your local market and upload it below. Make sure
@@ -18,9 +18,11 @@ const TaskPage = () => {
           </button>
         </div>
 
-        <button className="bg-green-600 text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition">
-          Submit Task
-        </button>
+        <div className="flex justify-end">
+          <button className="bg-green-600 text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition">
+            Submit Task
+          </button>
+        </div>
       </div>
     </MainContainer>
   );
