@@ -5,8 +5,10 @@ import {
   Facebook,
   GoogleIcon,
 } from "../../../components/svgs/Icons";
+import { supabase } from "../../../utils/supabaseClient";
 
 const Signup = () => {
+  console.log(supabase);
   return (
     <AuthContainer>
       <div className="flex flex-col lg:h-[60vh] overflow-y-hidden items-center justify-center">

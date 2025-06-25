@@ -69,7 +69,9 @@ const Login = () => {
       </div>
       <div className="flex mt-[15vh] items-end space-x-3">
         <h2>Don't have an account?</h2>
-        <button className="text-[#007bff] underline">Register</button>
+        <NavLink to="/signup" className="text-[#007bff] underline">
+          Register
+        </NavLink>
       </div>
     </AuthContainer>
   );
