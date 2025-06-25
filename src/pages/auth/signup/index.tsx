@@ -122,7 +122,7 @@ const Signup = () => {
       return;
     }
 
-    toast.success("🎉 Signup successful! Please hold on....", {
+    toast.success("🎉 Signup successful!", {
       position: "top-center",
       autoClose: 2000,
       style: {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContainer from "../../../components/containers/AuthContainer";
 import {
@@ -6,10 +7,62 @@ import {
   Facebook,
   GoogleIcon,
 } from "../../../components/svgs/Icons";
+import { supabase } from "../../../utils/supabaseClient";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
+  const [loginDetails, setLoginDetails] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleLogin = async () => {
+    if (!loginDetails.email || !loginDetails.password) {
+      toast.error("Please fill in all fields.", {
+        position: "top-center",
+        autoClose: 2000,
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: loginDetails.email,
+      password: loginDetails.password,
+    });
+
+    if (error) {
+      toast.error(error.message, {
+        position: "top-center",
+        autoClose: 2000,
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      return data;
+    }
+
+    toast.success("Login successful! Redirecting...", {
+      position: "top-center",
+      autoClose: 2000,
+      style: {
+        background: "#333",
+        color: "#fff",
+      },
+      onClose: () => {
+        window.location.href = "/dashboard";
+      },
+    });
+  };
+
   return (
     <AuthContainer>
+      <ToastContainer position="top-center" />
+
       <div className="flex flex-col h-[60vh] overflow-y-hidden items-center justify-center">
         <h2 className="lg:text-[24px] text-[20px] text-center font-semibold">
           Welcome back! Sign In to Continue
@@ -41,6 +94,10 @@ const Login = () => {
             <input
               type="email"
               id="email"
+              value={loginDetails.email}
+              onChange={(e) =>
+                setLoginDetails({ ...loginDetails, email: e.target.value })
+              }
               className="outline-none bg-[#ececec] rounded-md p-4 w-full"
             />
           </div>
@@ -52,21 +109,26 @@ const Login = () => {
               <input
                 type="password"
                 id="password"
+                value={loginDetails.password}
+                onChange={(e) =>
+                  setLoginDetails({ ...loginDetails, password: e.target.value })
+                }
                 className="outline-none w-[100%]"
               />
               <EyeIcon />
             </div>
           </div>
           <div className="flex justify-end">
-            <NavLink
-              to="/dashboard"
+            <button
+              onClick={handleLogin}
               className="bg-[#007bff] text-white px-6 py-3 font-semibold rounded-lg"
             >
               Sign In
-            </NavLink>
+            </button>
           </div>
         </div>
       </div>
+
       <div className="flex mt-[15vh] items-end space-x-3">
         <h2>Don't have an account?</h2>
         <NavLink to="/signup" className="text-[#007bff] underline">
