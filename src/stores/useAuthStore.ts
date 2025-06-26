@@ -6,6 +6,8 @@ export type CustomUser = {
   id: string;
   email: string;
   name: string;
+  total_earnings: string;
+  free_spins: string;
 };
 
 type AuthState = {

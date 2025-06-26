@@ -1,6 +1,7 @@
 import Sidebar from "../sections/dashboard/Sidebar";
 import Topbar from "../sections/dashboard/Topbar";
 import { useAuthStore } from "../../stores/useAuthStore";
+import Spinner from "../defaults/Spinner";
 
 interface MainContainerProps {
   children: React.ReactNode;
@@ -9,9 +10,8 @@ interface MainContainerProps {
 const MainContainer = ({ children }: MainContainerProps) => {
   const { user, loading } = useAuthStore();
 
-  if (loading) return <p>Loading session...</p>;
+  if (loading) return <Spinner />;
 
-  console.log(user);
   return (
     <div className="bg-[#f1f1f1]">
       <Topbar user={user} />

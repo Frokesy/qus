@@ -1,4 +1,5 @@
 import MainContainer from "../../components/containers/MainContainer";
+import Spinner from "../../components/defaults/Spinner";
 import { useAuthStore } from "../../stores/useAuthStore";
 
 const Dashboard = () => {
@@ -14,16 +15,15 @@ const Dashboard = () => {
 
   const { user, loading } = useAuthStore();
 
-  if (loading) return <p>Loading session...</p>;
+  if (loading) return <Spinner />;
 
-  console.log(user);
   return (
     <MainContainer>
       <h2 className="lg:text-[30px] text-[20px] font-semibold">
         Welcome back, {user?.name}!
       </h2>
       <p className="lg:text-[20px] text-[#808080] italic">
-        You're $2,350 away from your next payout.
+        Let's crush those tasks and earn more!
       </p>
 
       {/* Summary */}
@@ -31,7 +31,7 @@ const Dashboard = () => {
         <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] pb-4 font-semibold">Total Earnings</h2>
           <span className="lg:text-[40px] text-[32px] font-semibold">
-            $10,000.00
+            ${user?.total_earnings || 0}
           </span>
         </div>
         <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
@@ -93,7 +93,9 @@ const Dashboard = () => {
 
         <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
           <h2 className="text-[20px] font-semibold">Free Spins Today</h2>
-          <span className="lg:text-[56px] text-[32px] font-semibold">1</span>
+          <span className="lg:text-[56px] text-[32px] font-semibold">
+            {user?.free_spins}
+          </span>
         </div>
       </div>
 
