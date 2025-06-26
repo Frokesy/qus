@@ -13,20 +13,84 @@ import TaskPage from "./pages/tasks/taskspage";
 import QuizPage from "./pages/tasks/quizpage";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/useAuthStore";
+import ProtectedRoute from "./components/defaults/ProtectedRoute";
 
 const App = () => {
   const router = createBrowserRouter([
     { path: "/", element: <Login /> },
     { path: "/signup", element: <Signup /> },
-    { path: "/dashboard", element: <Dashboard /> },
-    { path: "/wallet", element: <Wallet /> },
-    { path: "/tasks", element: <Tasks /> },
-    { path: "/settings", element: <Settings /> },
-    { path: "/profile", element: <Profile /> },
-    { path: "/settings/change-password", element: <ChangePassword /> },
-    { path: "/settings/edit-profile", element: <EditProfile /> },
-    { path: "/taskspage", element: <TaskPage /> },
-    { path: "/quizpage", element: <QuizPage /> },
+    {
+      path: "/dashboard",
+      element: (
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/wallet",
+      element: (
+        <ProtectedRoute>
+          <Wallet />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/tasks",
+      element: (
+        <ProtectedRoute>
+          <Tasks />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings",
+      element: (
+        <ProtectedRoute>
+          <Settings />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings/change-password",
+      element: (
+        <ProtectedRoute>
+          <ChangePassword />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/settings/edit-profile",
+      element: (
+        <ProtectedRoute>
+          <EditProfile />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/taskspage",
+      element: (
+        <ProtectedRoute>
+          <TaskPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/quizpage",
+      element: (
+        <ProtectedRoute>
+          <QuizPage />
+        </ProtectedRoute>
+      ),
+    },
   ]);
 
   useEffect(() => {
