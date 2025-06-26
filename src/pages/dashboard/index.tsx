@@ -1,4 +1,5 @@
 import MainContainer from "../../components/containers/MainContainer";
+import { useAuthStore } from "../../stores/useAuthStore";
 
 const Dashboard = () => {
   const activities = [
@@ -10,10 +11,16 @@ const Dashboard = () => {
     "💰 Earned ₦500 from referrals.",
     "💰 Earned ₦1,000 from referrals.",
   ];
+
+  const { user, loading } = useAuthStore();
+
+  if (loading) return <p>Loading session...</p>;
+
+  console.log(user);
   return (
     <MainContainer>
       <h2 className="lg:text-[30px] text-[20px] font-semibold">
-        Welcome back, John Doe!
+        Welcome back, {user?.name}!
       </h2>
       <p className="lg:text-[20px] text-[#808080] italic">
         You're $2,350 away from your next payout.

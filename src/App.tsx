@@ -11,6 +11,8 @@ import ChangePassword from "./pages/settings/change-password";
 import EditProfile from "./pages/settings/edit-profile";
 import TaskPage from "./pages/tasks/taskspage";
 import QuizPage from "./pages/tasks/quizpage";
+import { useEffect } from "react";
+import { useAuthStore } from "./stores/useAuthStore";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -26,6 +28,11 @@ const App = () => {
     { path: "/taskspage", element: <TaskPage /> },
     { path: "/quizpage", element: <QuizPage /> },
   ]);
+
+  useEffect(() => {
+    const fetchSession = useAuthStore.getState().fetchSession;
+    fetchSession();
+  }, []);
 
   return (
     <AnimatePresence mode="wait">

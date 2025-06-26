@@ -9,8 +9,13 @@ import UserDropdown from "../../dropdowns/UserDropdown";
 import NotificationDropdown from "../../dropdowns/NotificationDropdown";
 import { User2 } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import type { CustomUser } from "../../../stores/useAuthStore";
 
-const Topbar = () => {
+interface TopbarProps {
+  user: CustomUser | null;
+}
+
+const Topbar = ({ user }: TopbarProps) => {
   const [showUserDropdown, setShowUserDropdown] = useState<boolean>(false);
   const [showNotificationDropdown, setShowNotificationDropdown] =
     useState<boolean>(false);
@@ -47,7 +52,7 @@ const Topbar = () => {
             className="flex items-center space-x-3 bg-[#1B1B2F] cursor-pointer text-[#fff] py-2 px-6 rounded-full"
           >
             <Avatar />
-            <span className="ml-2">John Doe</span>
+            <span className="ml-2">{user?.name}</span>
             <CaretDown />
           </div>
           {showUserDropdown && <UserDropdown />}

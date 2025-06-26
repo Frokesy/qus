@@ -1,14 +1,20 @@
 import Sidebar from "../sections/dashboard/Sidebar";
 import Topbar from "../sections/dashboard/Topbar";
+import { useAuthStore } from "../../stores/useAuthStore";
 
 interface MainContainerProps {
   children: React.ReactNode;
 }
 
 const MainContainer = ({ children }: MainContainerProps) => {
+  const { user, loading } = useAuthStore();
+
+  if (loading) return <p>Loading session...</p>;
+
+  console.log(user);
   return (
     <div className="bg-[#f1f1f1]">
-      <Topbar />
+      <Topbar user={user} />
       <div className="flex h-[95vh] lg:overflow-hidden overflow-y-auto lg:flex-row flex-col-reverse">
         <Sidebar />
         <div className="lg:w-[85%] lg:p-10 p-4 lg:mt-0 mt-[10vh] overflow-y-auto">
