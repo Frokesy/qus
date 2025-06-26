@@ -18,13 +18,13 @@ const Stat = ({
 
 const Dashboard = () => {
   const activities = [
-    "✅ You completed Task 18 — ₦200 added to wallet.",
-    "🎉 You spun the wheel and won ₦500!",
+    "✅ You completed Task 18 — $2 added to wallet.",
+    "🎉 You spun the wheel and won $5!",
     "🔒 ID verification pending. ₦1,000 frozen.",
-    "🧠 Scored 8/10 in “Tech Quiz” — earned ₦150.",
-    "💰 Earned ₦200 from referrals.",
-    "💰 Earned ₦500 from referrals.",
-    "💰 Earned ₦1,000 from referrals.",
+    "🧠 Scored 8/10 in “Tech Quiz” — earned $15.",
+    "💰 Earned $20 from referrals.",
+    "💰 Earned $50 from referrals.",
+    "💰 Earned $100 from referrals.",
   ];
 
   const { user, loading } = useAuthStore();

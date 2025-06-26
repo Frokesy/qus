@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AuthContainer from "../../../components/containers/AuthContainer";
 import {
   EmailIcon,
@@ -18,6 +18,7 @@ const Signup = () => {
     password: "",
     invitationCode: "",
   });
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
     if (
@@ -130,7 +131,7 @@ const Signup = () => {
         color: "#fff",
       },
       onClose: () => {
-        window.location.href = "/dashboard";
+        navigate("/dashboard");
       },
     });
   };

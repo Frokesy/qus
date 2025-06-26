@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AuthContainer from "../../../components/containers/AuthContainer";
 import {
   EmailIcon,
@@ -15,6 +15,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     if (!loginDetails.email || !loginDetails.password) {
@@ -54,7 +55,7 @@ const Login = () => {
         color: "#fff",
       },
       onClose: () => {
-        window.location.href = "/dashboard";
+        navigate("/dashboard");
       },
     });
   };
