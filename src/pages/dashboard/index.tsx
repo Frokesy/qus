@@ -1,6 +1,20 @@
 import MainContainer from "../../components/containers/MainContainer";
 import Spinner from "../../components/defaults/Spinner";
 import { useAuthStore } from "../../stores/useAuthStore";
+const Stat = ({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value: number;
+  color: string;
+}) => (
+  <div className="space-y-1">
+    <span className={`text-lg font-semibold text-${color}-600`}>{value}</span>
+    <p className="text-gray-500">{label}</p>
+  </div>
+);
 
 const Dashboard = () => {
   const activities = [
@@ -19,120 +33,91 @@ const Dashboard = () => {
 
   return (
     <MainContainer>
-      <h2 className="lg:text-[30px] text-[20px] font-semibold">
-        Welcome back, {user?.name}!
-      </h2>
-      <p className="lg:text-[20px] text-[#808080] italic">
-        Let's crush those tasks and earn more!
-      </p>
+      <div className="space-y-2 mb-8">
+        <h2 className="lg:text-3xl text-2xl font-bold">
+          Welcome back, {user?.name}!
+        </h2>
+        <p className="lg:text-lg text-base text-gray-500 italic">
+          Let's crush those tasks and earn more!
+        </p>
+      </div>
 
-      {/* Summary */}
-      <div className="flex lg:flex-row flex-col justify-between lg:space-y-0 space-y-6 lg:space-x-10 mt-10">
-        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
-          <h2 className="text-[20px] pb-4 font-semibold">Total Earnings</h2>
-          <span className="lg:text-[40px] text-[32px] font-semibold">
+      {/* Summary Cards */}
+      <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 mb-12">
+        <div className="bg-white shadow-md rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-2">Total Earnings</h3>
+          <span className="text-4xl font-bold text-green-600">
             ${user?.total_earnings || 0}
           </span>
         </div>
-        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
-          <h2 className="text-[20px] font-semibold">Quizzes</h2>
-          <div className="flex justify-between space-x-3 mt-4">
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-blue-600 font-semibold">
-                10
-              </span>
-              <span className="text-[#808080] text-[14px]">Total</span>
-            </div>
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-green-600 font-semibold">
-                5
-              </span>
-              <span className="text-[#808080] text-[14px]">Completed</span>
-            </div>
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-yellow-600 font-semibold">
-                5
-              </span>
-              <span className="text-[#808080] text-[14px]">Pending</span>
-            </div>
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-red-600 font-semibold">0</span>
-              <span className="text-[#808080] text-[14px]">Failed</span>
-            </div>
+
+        <div className="bg-white shadow-md rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-4">Quizzes</h3>
+          <div className="flex justify-between text-center text-sm">
+            <Stat label="Total" value={10} color="blue" />
+            <Stat label="Completed" value={5} color="green" />
+            <Stat label="Pending" value={5} color="yellow" />
+            <Stat label="Failed" value={0} color="red" />
           </div>
         </div>
 
-        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
-          <h2 className="text-[20px] font-semibold">Tasks</h2>
-
-          <div className="flex justify-between space-x-3 mt-4">
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-blue-600 font-semibold">
-                10
-              </span>
-              <span className="text-[#808080] text-[14px]">Total</span>
-            </div>
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-green-600 font-semibold">
-                5
-              </span>
-              <span className="text-[#808080] text-[14px]">Completed</span>
-            </div>
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-yellow-600 font-semibold">
-                5
-              </span>
-              <span className="text-[#808080] text-[14px]">Pending</span>
-            </div>
-            <div className="flex flex-col text-center space-y-1">
-              <span className="text-[20px] text-red-600 font-semibold">0</span>
-              <span className="text-[#808080] text-[14px]">Failed</span>
-            </div>
+        <div className="bg-white shadow-md rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-4">Tasks</h3>
+          <div className="flex justify-between text-center text-sm">
+            <Stat label="Total" value={10} color="blue" />
+            <Stat label="Completed" value={5} color="green" />
+            <Stat label="Pending" value={5} color="yellow" />
+            <Stat label="Failed" value={0} color="red" />
           </div>
         </div>
 
-        <div className="lg:w-[25%] bg-[#fff] rounded-2xl p-6">
-          <h2 className="text-[20px] font-semibold">Free Spins Today</h2>
-          <span className="lg:text-[56px] text-[32px] font-semibold">
+        <div className="bg-white shadow-md rounded-xl p-6">
+          <h3 className="text-lg font-semibold mb-2">Free Spins Today</h3>
+          <span className="text-5xl font-bold text-purple-600">
             {user?.free_spins}
           </span>
         </div>
       </div>
 
-      <div className="flex lg:flex-row flex-col justify-between items-baseline space-x-4">
-        {/* CTA */}
-        <div className="grid lg:grid-cols-3 grid-cols-1 gap-10 w-[100%] lg:w-[70%] mt-10">
-          <div className="bg-[#fff] rounded-2xl space-y-3 p-4">
-            <h2 className="text-[20px]">Continue Quiz</h2>
-            <p>You left off at question 5 of 10</p>
-            <button className="bg-blue-500 text-white w-[100%] font-semibold px-4 py-2 rounded-md">
-              Resume Quiz
-            </button>
-          </div>
-
-          <div className="bg-[#fff] rounded-2xl space-y-3 p-4">
-            <h2 className="text-[20px]">New Task Available</h2>
-            <p>Take a photo of a public place</p>
-            <button className="bg-blue-500 text-white w-[100%] font-semibold px-4 py-2 rounded-md">
-              Start Task
-            </button>
-          </div>
-          <div className="bg-[#fff] rounded-2xl space-y-3 p-4">
-            <h2 className="text-[20px]">Daily Spin</h2>
-            <p>You've not spun today!</p>
-            <button className="bg-blue-500 text-white w-[100%] font-semibold px-4 py-2 rounded-md">
-              Spin now
-            </button>
-          </div>
+      {/* CTA & Recent Activity */}
+      <div className="flex lg:flex-row flex-col gap-6 pb-30">
+        <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 w-full items-baseline">
+          {[
+            {
+              title: "Continue Quiz",
+              description: "You left off at question 5 of 10",
+              action: "Resume Quiz",
+            },
+            {
+              title: "New Task Available",
+              description: "Take a photo of a public place",
+              action: "Start Task",
+            },
+            {
+              title: "Daily Spin",
+              description: "You've not spun today!",
+              action: "Spin now",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="bg-white shadow-md rounded-xl p-6 space-y-3"
+            >
+              <h3 className="text-lg font-semibold">{item.title}</h3>
+              <p className="text-sm text-gray-600">{item.description}</p>
+              <button className="w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition">
+                {item.action}
+              </button>
+            </div>
+          ))}
         </div>
-        <div className="border border-[#ccc] mt-10 lg:w-[25%] mb-20 lg:mb-0 rounded-2xl space-y-3 p-4">
-          <h2 className="text-[20px] font-semibold">Recent Activities</h2>
 
-          <div className="flex flex-col space-y-3">
+        {/* Recent Activities */}
+        <div className="bg-white shadow-md rounded-xl p-6 lg:w-[25%]">
+          <h3 className="text-lg font-semibold mb-4">Recent Activities</h3>
+          <div className="space-y-2 text-sm text-gray-700">
             {activities.map((item, idx) => (
-              <p key={idx} className="text-sm">
-                {item}
-              </p>
+              <p key={idx}>• {item}</p>
             ))}
           </div>
         </div>
