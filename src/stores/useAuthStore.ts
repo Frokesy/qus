@@ -7,6 +7,7 @@ export type CustomUser = {
   email: string;
   name: string;
   total_earnings: string;
+  user_id: string;
   free_spins: string;
   rank: string;
   username: string;

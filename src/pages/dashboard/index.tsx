@@ -43,7 +43,7 @@ const Dashboard = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 mb-12">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mb-12">
         <div className="bg-white shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-2">Total Earnings</h3>
           <span className="text-4xl font-bold text-green-600">
@@ -52,22 +52,12 @@ const Dashboard = () => {
         </div>
 
         <div className="bg-white shadow-md rounded-xl p-6">
-          <h3 className="text-lg font-semibold mb-4">Quizzes</h3>
-          <div className="flex justify-between text-center text-sm">
-            <Stat label="Total" value={10} color="blue" />
-            <Stat label="Completed" value={5} color="green" />
-            <Stat label="Pending" value={5} color="yellow" />
-            <Stat label="Failed" value={0} color="red" />
-          </div>
-        </div>
-
-        <div className="bg-white shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-4">Tasks</h3>
           <div className="flex justify-between text-center text-sm">
             <Stat label="Total" value={10} color="blue" />
             <Stat label="Completed" value={5} color="green" />
-            <Stat label="Pending" value={5} color="yellow" />
-            <Stat label="Failed" value={0} color="red" />
+            <Stat label="Avg. Rating" value={4.5} color="yellow" />
+            <Stat label="Feedbacks" value={0} color="cyan" />
           </div>
         </div>
 
