@@ -74,9 +74,9 @@ const Dashboard = () => {
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 w-full items-baseline">
           {[
             {
-              title: "Continue Quiz",
-              description: "You left off at question 5 of 10",
-              action: "Resume Quiz",
+              title: "Wallet Summary",
+              description: `$${user?.total_earnings || 0} available. Next payout: Friday`,
+              action: "View Wallet",
             },
             {
               title: "New Task Available",
