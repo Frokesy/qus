@@ -12,6 +12,8 @@ const MainContainer = ({ children }: MainContainerProps) => {
 
   if (loading) return <Spinner />;
 
+  // #010725
+
   return (
     <div className="bg-[#f1f1f1]">
       <Topbar user={user} />

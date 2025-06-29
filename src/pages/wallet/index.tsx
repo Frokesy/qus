@@ -1,7 +1,12 @@
 import { Wallet, Banknote, CreditCard, FileDown, Clock } from "lucide-react";
 import MainContainer from "../../components/containers/MainContainer";
+import { useAuthStore } from "../../stores/useAuthStore";
+import Spinner from "../../components/defaults/Spinner";
 
 const WalletPage = () => {
+  const { user, loading } = useAuthStore();
+
+  if (loading) return <Spinner />;
   return (
     <MainContainer>
       <div className="space-y-6 h-[80vh] overflow-y-auto lg:pb-0 pb-20">
@@ -14,9 +19,11 @@ const WalletPage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-base text-gray-500">Available Balance</h3>
-                <p className="text-3xl font-bold text-gray-800">$25,000.00</p>
+                <p className="text-3xl font-bold text-green-600">
+                  ${user?.total_earnings || 0}
+                </p>
                 <p className="mt-1 text-sm italic text-blue-600">
-                  Frozen: $10,000.00
+                  Frozen: ${user?.frozen_balance || 0}
                 </p>
               </div>
               <Wallet className="w-10 h-10 text-blue-500" />

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import MainContainer from "../../components/containers/MainContainer";
 import Spinner from "../../components/defaults/Spinner";
 import { useAuthStore } from "../../stores/useAuthStore";
@@ -35,7 +36,7 @@ const Dashboard = () => {
     <MainContainer>
       <div className="space-y-2 mb-8">
         <h2 className="lg:text-3xl text-2xl font-bold">
-          Welcome back, {user?.name}!
+          Welcome back, {user?.username ? user.username : user?.name}!
         </h2>
         <p className="lg:text-lg text-base text-gray-500 italic">
           Let's crush those tasks and earn more!
@@ -70,6 +71,9 @@ const Dashboard = () => {
       </div>
 
       {/* CTA & Recent Activity */}
+      <h2 className="lg:text-[20px] italic font-semibold mb-3">
+        Quick Actions
+      </h2>
       <div className="flex lg:flex-row flex-col gap-6 pb-30">
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 w-full items-baseline">
           {[
@@ -77,16 +81,26 @@ const Dashboard = () => {
               title: "Wallet Summary",
               description: `$${user?.total_earnings || 0} available. Next payout: Friday`,
               action: "View Wallet",
+              link: "/wallet",
             },
             {
-              title: "New Task Available",
-              description: "Take a photo of a public place",
+              title: "Continue Tasks",
+              description:
+                "Get back to crushing those tasks! Start a new task or continue an existing one.",
               action: "Start Task",
+              link: "/tasks",
             },
             {
               title: "Daily Spin",
               description: "You've not spun today!",
               action: "Spin now",
+              link: "/tasks",
+            },
+            {
+              title: "Update Profile",
+              description: "Update your profile information",
+              action: "Update now",
+              link: "/profile",
             },
           ].map((item, i) => (
             <div
@@ -95,9 +109,11 @@ const Dashboard = () => {
             >
               <h3 className="text-lg font-semibold">{item.title}</h3>
               <p className="text-sm text-gray-600">{item.description}</p>
-              <button className="w-full bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition">
-                {item.action}
-              </button>
+              <NavLink to={item.link}>
+                <button className="w-[100%] bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition">
+                  {item.action}
+                </button>
+              </NavLink>
             </div>
           ))}
         </div>
