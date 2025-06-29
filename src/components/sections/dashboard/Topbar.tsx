@@ -24,7 +24,7 @@ const Topbar = ({ user }: TopbarProps) => {
     <div className="lg:relative fixed w-[100%]">
       <PromoTickerBar />
 
-      <div className="w-[100%] py-3 bg-[#fff] lg:bg-inherit z-50 flex justify-between px-4 border-b-2 border-[#808080] pt-16">
+      <div className="w-[100%] py-3 bg-[#010725] lg:bg-inherit z-50 flex justify-between px-4 border-b-2 border-[#808080] pt-16">
         <img src="/assets/logo.png" alt="logo" className="w-[50px] h-[50px]" />
         <div className="flex items-center lg:space-x-10">
           <div className="lg:block hidden">
@@ -45,9 +45,9 @@ const Topbar = ({ user }: TopbarProps) => {
             </div>
             <NavLink
               to="/profile"
-              className="p-2 bg-[#fff] rounded-full lg:hidden shadow-md"
+              className="p-2 bg-[#1B1B2F] rounded-full lg:hidden shadow-md"
             >
-              <User2 />
+              <User2 color="#fff" />
             </NavLink>
           </div>
           <div className="hidden lg:block relative">
