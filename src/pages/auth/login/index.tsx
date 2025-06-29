@@ -47,6 +47,7 @@ const Login = () => {
           color: "#fff",
         },
       });
+      setLoading(false);
       return data;
     }
     setLoading(false);

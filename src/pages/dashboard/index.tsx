@@ -70,6 +70,53 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Enhanced High-Level Statistics Section */}
+      <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 mb-8">
+        {[
+          {
+            label: "Online Users",
+            value: 42,
+            color: "green",
+            img: "/assets/undraw-one.svg",
+          },
+          {
+            label: "Task Quality Score",
+            value: 87,
+            color: "blue",
+            img: "/assets/undraw-two.svg",
+          },
+          {
+            label: "Tasks Completed",
+            value: 134,
+            color: "indigo",
+            img: "/assets/undraw-three.svg",
+          },
+          {
+            label: "Total Earned by Users",
+            value: 4520,
+            color: "emerald",
+            img: "/assets/undraw-four.svg",
+            prefix: "$",
+          },
+        ].map((stat, i) => (
+          <div
+            key={i}
+            className="bg-white shadow-sm border border-gray-100 rounded-xl p-5 space-y-3 hover:shadow-md transition group"
+          >
+            <h4 className="text-sm font-medium text-gray-600">{stat.label}</h4>
+            <p className={`text-3xl font-bold text-${stat.color}-600`}>
+              {stat.prefix || ""}
+              {stat.value}
+            </p>
+            <img
+              src={stat.img}
+              alt={`${stat.label} illustration`}
+              className="w-full h-[100px] object-contain rounded-md mb-2 group-hover:scale-105 transition-transform"
+            />
+          </div>
+        ))}
+      </div>
+
       {/* CTA & Recent Activity */}
       <h2 className="lg:text-[20px] italic font-semibold mb-3">
         Quick Actions
