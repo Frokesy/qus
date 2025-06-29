@@ -1,106 +1,39 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { supabase } from "../../utils/supabaseClient";
 import MainContainer from "../../components/containers/MainContainer";
 import SpinnerWheel from "../../components/sections/tasks/SpinnerWheel";
 
+type TaskItem = {
+  id: string;
+  title: string;
+  desc: string;
+  icon: string;
+  cta: string;
+  link: string;
+  bg: string;
+};
+
 const Tasks = () => {
-  const taskItems = [
-    {
-      title: "Science & Nature Quiz",
-      desc: "Test your knowledge of the natural world.",
-      bg: "bg-green-50",
-      cta: "Take Quiz",
-      icon: "🧪",
-      link: "/quizpage",
-    },
-    {
-      title: "Photo Hunt",
-      desc: "Take a photo of a nearby market.",
-      bg: "bg-orange-50",
-      cta: "Start Task",
-      icon: "📷",
-      link: "/taskspage",
-    },
-    {
-      title: "Tech & Innovation Quiz",
-      desc: "Identify modern breakthroughs in tech.",
-      bg: "bg-indigo-50",
-      cta: "Take Quiz",
-      icon: "💻",
-      link: "/quizpage",
-    },
-    {
-      title: "Transcribe Handwritten Note",
-      desc: "Type out content from an uploaded image.",
-      bg: "bg-yellow-50",
-      cta: "Start Task",
-      icon: "⌨️",
-      link: "/taskspage",
-    },
-    {
-      title: "Geography Quiz",
-      desc: "Answer questions on world landmarks.",
-      bg: "bg-blue-50",
-      cta: "Take Quiz",
-      icon: "🌍",
-      link: "/quizpage",
-    },
-    {
-      title: "Spin Challenge",
-      desc: "Get lucky and win up to $50.",
-      bg: "bg-pink-50",
-      cta: "Spin Now",
-      icon: "🎯",
-      link: "/quizpage",
-    },
-    {
-      title: "Local Language Quiz",
-      desc: "Translate these common Yoruba phrases.",
-      bg: "bg-purple-50",
-      cta: "Take Quiz",
-      icon: "🗣️",
-      link: "/quizpage",
-    },
-    {
-      title: "Short Video Task",
-      desc: "Record a short 10-sec video about your workspace.",
-      bg: "bg-rose-50",
-      cta: "Start Task",
-      icon: "🎥",
-      link: "/taskspage",
-    },
-    {
-      title: "Math & Logic Quiz",
-      desc: "Solve logic problems to earn points.",
-      bg: "bg-cyan-50",
-      cta: "Take Quiz",
-      icon: "🧠",
-      link: "/quizpage",
-    },
-    {
-      title: "Feedback Survey",
-      desc: "Fill a quick form to share your opinion.",
-      bg: "bg-lime-50",
-      cta: "Start Task",
-      icon: "📝",
-      link: "/taskspage",
-    },
-    {
-      title: "Landmark Photo Quest",
-      desc: "Snap a picture of a major local landmark.",
-      bg: "bg-amber-50",
-      cta: "Start Task",
-      icon: "🏛️",
-      link: "/taskspage",
-    },
-    {
-      title: "Spin & Win Bonus Round",
-      desc: "Bonus spin unlocked — try your luck!",
-      bg: "bg-red-50",
-      cta: "Spin Now",
-      icon: "🎰",
-      link: "/quizpage",
-    },
-  ];
+  const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const { data, error } = await supabase.from("tasks").select("*");
+      console.log(data);
+
+      if (error) {
+        console.error("Failed to fetch tasks:", error.message);
+      } else {
+        setTaskItems(data as TaskItem[]);
+      }
+
+      setLoading(false);
+    };
+
+    fetchTasks();
+  }, []);
 
   return (
     <MainContainer>
@@ -113,24 +46,28 @@ const Tasks = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {taskItems.map((item, idx) => (
-              <div
-                key={idx}
-                className={`${item.bg} p-4 rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition duration-300`}
-              >
-                <div className="text-3xl">{item.icon}</div>
-                <h3 className="text-lg font-semibold mt-2">{item.title}</h3>
-                <p className="text-sm text-gray-600 mt-1">{item.desc}</p>
-                <NavLink
-                  to={item.link}
-                  className="mt-4 flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm"
+          {loading ? (
+            <p>Loading tasks...</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {taskItems.map((item) => (
+                <div
+                  key={item.id}
+                  className={`${item.bg} p-4 rounded-xl flex flex-col justify-between shadow-sm hover:shadow-md transition duration-300`}
                 >
-                  {item.cta}
-                </NavLink>
-              </div>
-            ))}
-          </div>
+                  <div className="text-3xl">{item.icon}</div>
+                  <h3 className="text-lg font-semibold mt-2">{item.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{item.desc}</p>
+                  <NavLink
+                    to={item.link}
+                    className="mt-4 flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm"
+                  >
+                    {item.cta}
+                  </NavLink>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Spinner wheel */}
