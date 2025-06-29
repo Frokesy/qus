@@ -27,6 +27,7 @@ type AuthState = {
   user: CustomUser | null;
   loading: boolean;
   fetchSession: () => Promise<void>;
+  logout: () => Promise<void>;
 };
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -128,5 +129,13 @@ export const useAuthStore = create<AuthState>((set) => ({
         });
       }
     });
+  },
+
+  logout: async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Logout failed:", error.message);
+    }
+    set({ session: null, user: null });
   },
 }));
