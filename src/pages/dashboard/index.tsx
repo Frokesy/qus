@@ -20,7 +20,7 @@ const Dashboard = () => {
   const activities = [
     "✅ You completed Task 18 — $2 added to wallet.",
     "🎉 You spun the wheel and won $5!",
-    "🔒 ID verification pending. ₦1,000 frozen.",
+    "🔒 ID verification pending. $100 frozen.",
     "🧠 Scored 8/10 in “Tech Quiz” — earned $15.",
     "💰 Earned $20 from referrals.",
     "💰 Earned $50 from referrals.",

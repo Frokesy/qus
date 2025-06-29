@@ -1,7 +1,13 @@
 import { User } from "lucide-react";
 import MainContainer from "../../components/containers/MainContainer";
+import { useAuthStore } from "../../stores/useAuthStore";
+import Spinner from "../../components/defaults/Spinner";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
+  const { user, loading } = useAuthStore();
+
+  if (loading) return <Spinner />;
   return (
     <MainContainer>
       <div className="h-[80vh] overflow-y-auto lg:pb-0 pb-20">
@@ -12,9 +18,9 @@ const Profile = () => {
             <User size={100} color="#ccc" />
           </div>
           <div className="flex flex-col">
-            <span className="text-[24px] font-semibold">John Doe</span>
+            <span className="text-[24px] font-semibold">{user?.name}</span>
             <span className="text-gray-500 text-[18px] italic">
-              john.doe@example.com
+              {user?.email}
             </span>
           </div>
         </div>
@@ -23,31 +29,56 @@ const Profile = () => {
           <div className="space-y-6">
             <div>
               <h2 className="lg:text-[18px] font-semibold">Earnings</h2>
-              <p className="lg:text-[16px] text-[14px]">$1000</p>
+              <p className="lg:text-[16px] text-[14px]">
+                ${user?.total_earnings}
+              </p>
             </div>
             <div>
               <h2 className="lg:text-[18px] font-semibold">Rank</h2>
-              <p className="lg:text-[16px] text-[14px]">Top Talent</p>
+              <p className="lg:text-[16px] text-[14px]">{user?.rank}</p>
             </div>
             <div>
               <h2 className="lg:text-[18px] font-semibold">Stats</h2>
-              <div className="flex flex-col space-y-1">
-                <p>Total Jobs Completed: 10</p>
-                <p>Average Rating: 4.8/5</p>
-                <p>Feedback Received: 5</p>
-              </div>
+              {user?.tasks === null ? (
+                <p className="lg:text-[16px] text-[14px]">
+                  You haven't completed any tasks yet
+                </p>
+              ) : (
+                <div className="flex flex-col space-y-1">
+                  <p>Total Jobs Completed: 10</p>
+                  <p>Average Rating: 4.8/5</p>
+                  <p>Feedback Received: 5</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="space-y-4">
             <h2 className="lg:text-[18px] font-semibold">User Details</h2>
 
-            <p>Username: Johndoe32</p>
-            <p>Phone: +1 (555) 555-5555</p>
-            <p>Address: 123 Main St, Anytown, USA</p>
-            <p>Member Since: 2022</p>
-            <p>Payment Method: Credit Card</p>
-            <p>Payment Status: Active</p>
+            <p>Username: {user?.username ? user.username : "N/A"}</p>
+            <p>Phone: {user?.phone ? user.phone : "N/A"}</p>
+            <p>Address: {user?.address ? user.address : "N/A"}</p>
+            <p>
+              Member Since: {user?.member_since ? user.member_since : "N/A"}
+            </p>
+            <p>
+              Payment Method:{" "}
+              {user?.payment_method ? user.payment_method : "N/A"}
+            </p>
+            <p>
+              Payment Status:{" "}
+              {user?.payment_status ? user.payment_status : "N/A"}
+            </p>
           </div>
+        </div>
+
+        <div className="flex items-center justify-center mt-10">
+          <NavLink
+            to="/settings/edit-profile"
+            className="bg-blue-500 hover:bg-blue-700 cursor-pointer text-white font-bold py-2 px-4 rounded"
+          >
+            Edit Profile
+          </NavLink>
         </div>
       </div>
     </MainContainer>

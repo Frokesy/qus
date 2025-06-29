@@ -8,6 +8,14 @@ export type CustomUser = {
   name: string;
   total_earnings: string;
   free_spins: string;
+  rank: string;
+  username: string;
+  address: string;
+  phone: string;
+  tasks: string[];
+  member_since: string;
+  payment_method: string;
+  payment_status: string;
 };
 
 type AuthState = {

@@ -21,6 +21,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSignup = async () => {
+    console.log("clicked");
     if (
       !userDetails.name ||
       !userDetails.email ||
