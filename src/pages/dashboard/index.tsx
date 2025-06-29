@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   return (
     <MainContainer>
-      <div className="space-y-2 mb-8">
+      <div className="space-y-2 mb-8 text-[#ffffff]">
         <h2 className="lg:text-3xl text-2xl font-bold">
           Welcome back, {user?.username ? user.username : user?.name}!
         </h2>
@@ -45,14 +45,14 @@ const Dashboard = () => {
 
       {/* Summary Cards */}
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mb-12">
-        <div className="bg-white shadow-md rounded-xl p-6">
+        <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-2">Total Earnings</h3>
           <span className="text-4xl font-bold text-green-600">
             ${user?.total_earnings || 0}
           </span>
         </div>
 
-        <div className="bg-white shadow-md rounded-xl p-6">
+        <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-4">Tasks</h3>
           <div className="flex justify-between text-center text-sm">
             <Stat label="Total" value={10} color="blue" />
@@ -62,7 +62,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white shadow-md rounded-xl p-6">
+        <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-2">Free Spins Today</h3>
           <span className="text-5xl font-bold text-purple-600">
             {user?.free_spins}
@@ -101,9 +101,9 @@ const Dashboard = () => {
         ].map((stat, i) => (
           <div
             key={i}
-            className="bg-white shadow-sm border border-gray-100 rounded-xl p-5 space-y-3 hover:shadow-md transition group"
+            className="bg-[#1B1B2F] text-[#fff] shadow-sm border border-gray-100 rounded-xl p-5 space-y-3 hover:shadow-md transition group"
           >
-            <h4 className="text-sm font-medium text-gray-600">{stat.label}</h4>
+            <h4 className="text-sm font-medium text-gray-100">{stat.label}</h4>
             <p className={`text-3xl font-bold text-${stat.color}-600`}>
               {stat.prefix || ""}
               {stat.value}
@@ -118,7 +118,7 @@ const Dashboard = () => {
       </div>
 
       {/* CTA & Recent Activity */}
-      <h2 className="lg:text-[20px] italic font-semibold mb-3">
+      <h2 className="lg:text-[20px] text-[#fff] italic font-semibold mb-3">
         Quick Actions
       </h2>
       <div className="flex lg:flex-row flex-col gap-6 pb-30">
@@ -152,10 +152,10 @@ const Dashboard = () => {
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-white shadow-md rounded-xl p-6 space-y-3"
+              className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6 space-y-3"
             >
               <h3 className="text-lg font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-600">{item.description}</p>
+              <p className="text-sm text-gray-300">{item.description}</p>
               <NavLink to={item.link}>
                 <button className="w-[100%] bg-blue-600 text-white font-medium py-2 px-4 rounded-md hover:bg-blue-700 transition">
                   {item.action}
@@ -166,9 +166,9 @@ const Dashboard = () => {
         </div>
 
         {/* Recent Activities */}
-        <div className="bg-white shadow-md rounded-xl p-6 lg:w-[25%]">
+        <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6 lg:w-[25%]">
           <h3 className="text-lg font-semibold mb-4">Recent Activities</h3>
-          <div className="space-y-2 text-sm text-gray-700">
+          <div className="space-y-2 text-sm text-gray-300">
             {activities.map((item, idx) => (
               <p key={idx}>• {item}</p>
             ))}

@@ -13,7 +13,7 @@ const promoTexts = [
 
 const PromoTickerBar = () => {
   return (
-    <div className="w-full bg-white py-2 border-b shadow-sm z-50 fixed top-0 left-0 overflow-hidden">
+    <div className="w-full bg-blue-800 py-2 border-b shadow-sm z-50 fixed top-0 left-0 overflow-hidden">
       <div className="flex whitespace-nowrap animate-marquee space-x-8 px-4">
         {promoTexts.map((text, idx) => (
           <span

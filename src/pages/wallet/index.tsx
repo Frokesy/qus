@@ -10,15 +10,17 @@ const WalletPage = () => {
   return (
     <MainContainer>
       <div className="space-y-6 h-[80vh] overflow-y-auto lg:pb-0 pb-20">
-        <h2 className="text-2xl font-semibold text-gray-800">
+        <h2 className="text-2xl font-semibold text-gray-300">
           Wallet Overview
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-          <div className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+          <div className="bg-[#1B1B2F] text-[#fff] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base text-gray-500">Available Balance</h3>
+                <h3 className="text-base text-[18px] font-semibold text-gray-300">
+                  Available Balance
+                </h3>
                 <p className="text-3xl font-bold text-green-600">
                   ${user?.total_earnings || 0}
                 </p>
@@ -31,8 +33,8 @@ const WalletPage = () => {
           </div>
 
           {/* Withdrawal Options */}
-          <div className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition">
-            <h3 className="text-base font-medium text-gray-600 mb-4 flex items-center gap-2">
+          <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
               <Banknote className="w-5 h-5 text-green-600" />
               Withdrawal Options
             </h3>
@@ -53,8 +55,8 @@ const WalletPage = () => {
           </div>
 
           {/* Transaction Actions */}
-          <div className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition">
-            <h3 className="text-base font-medium text-gray-600 mb-4 flex items-center gap-2">
+          <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-indigo-600" />
               Transaction Actions
             </h3>

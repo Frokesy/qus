@@ -42,7 +42,9 @@ const Tasks = () => {
       <div className="flex justify-between lg:flex-row flex-col-reverse space-x-10 h-[80vh] overflow-x-hidden pb-20 lg:pb-0 pt-4 lg:pt-0">
         <div className="space-y-4 w-full max-w-5xl">
           <div className="flex justify-between items-center">
-            <h2 className="text-[24px] font-semibold">Available Tasks</h2>
+            <h2 className="text-[24px] text-[#fff] font-semibold">
+              Available Tasks
+            </h2>
             <span className="text-blue-500 cursor-pointer hover:underline">
               See all
             </span>
@@ -74,7 +76,7 @@ const Tasks = () => {
 
         {/* Spinner wheel */}
         <div className="flex flex-col justify-center items-center h-full">
-          <h2 className="text-[20px] font-semibold">
+          <h2 className="text-[20px] text-[#fff] font-semibold">
             Use your free spin for today
           </h2>
           <SpinnerWheel />

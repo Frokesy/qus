@@ -165,13 +165,13 @@ const Signup = () => {
 
         <div className="flex items-center space-x-2">
           <div className="border-t-2 border-[#ccc] w-10"></div>
-          <span className="text-[14px] text-[#232323]">or do via email</span>
+          <span className="text-[14px] text-[#fff]">or do via email</span>
           <div className="border-t-2 border-[#ccc] w-10"></div>
         </div>
 
         <div className="space-y-6 mt-6 lg:w-auto w-[100%]">
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
-            <label htmlFor="name" className="text-[14px] text-[#232323]">
+            <label htmlFor="name" className="text-[14px] text-[#fff]">
               Full Name
             </label>
             <input
@@ -185,7 +185,7 @@ const Signup = () => {
             />
           </div>
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
-            <label htmlFor="email" className="text-[14px] text-[#232323]">
+            <label htmlFor="email" className="text-[14px] text-[#fff]">
               Email
             </label>
             <input
@@ -199,7 +199,7 @@ const Signup = () => {
             />
           </div>
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
-            <label htmlFor="password" className="text-[14px] text-[#232323]">
+            <label htmlFor="password" className="text-[14px] text-[#fff]">
               Password
             </label>
             <div className="flex space-x-2 justify-between bg-[#ececec] rounded-md p-4 w-full">
@@ -217,10 +217,7 @@ const Signup = () => {
           </div>
 
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
-            <label
-              htmlFor="invitationCode"
-              className="text-[14px] text-[#232323]"
-            >
+            <label htmlFor="invitationCode" className="text-[14px] text-[#fff]">
               Invitation Code
             </label>
             <input

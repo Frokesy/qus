@@ -12,10 +12,8 @@ const MainContainer = ({ children }: MainContainerProps) => {
 
   if (loading) return <Spinner />;
 
-  // #010725
-
   return (
-    <div className="bg-[#f1f1f1]">
+    <div className="bg-[#010725]">
       <Topbar user={user} />
       <div className="flex h-[90vh] lg:overflow-hidden overflow-y-auto lg:flex-row flex-col-reverse">
         <Sidebar />

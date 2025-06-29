@@ -83,7 +83,7 @@ const EditProfile = () => {
   return (
     <MainContainer>
       <ToastContainer />
-      <div className="h-[80vh] overflow-y-auto lg:pb-0 pb-20">
+      <div className="h-[80vh] text-[#fff] overflow-y-auto lg:pb-0 pb-20">
         <h1 className="lg:text-[30px] text-[20px] font-semibold">
           Edit Profile
         </h1>
@@ -99,7 +99,7 @@ const EditProfile = () => {
             {/* Name & Username */}
             <div className="flex lg:flex-row flex-col justify-between lg:space-x-10 lg:space-y-0 space-y-6 w-full">
               <div className="flex flex-col space-y-2 lg:w-[50%]">
-                <label htmlFor="name" className="text-[14px] text-[#232323]">
+                <label htmlFor="name" className="text-[14px] text-[#fff]">
                   Full Name
                 </label>
                 <input
@@ -111,10 +111,7 @@ const EditProfile = () => {
                 />
               </div>
               <div className="flex flex-col space-y-2 lg:w-[50%]">
-                <label
-                  htmlFor="username"
-                  className="text-[14px] text-[#232323]"
-                >
+                <label htmlFor="username" className="text-[14px] text-[#fff]">
                   Username
                 </label>
                 <input
@@ -129,7 +126,7 @@ const EditProfile = () => {
 
             {/* Email */}
             <div className="flex flex-col space-y-2 w-full">
-              <label htmlFor="email" className="text-[14px] text-[#232323]">
+              <label htmlFor="email" className="text-[14px] text-[#fff]">
                 Email
               </label>
               <input
@@ -144,7 +141,7 @@ const EditProfile = () => {
             {/* Address & Phone */}
             <div className="flex lg:flex-row flex-col justify-between lg:space-x-10 lg:space-y-0 space-y-6 w-full">
               <div className="flex flex-col space-y-2 lg:w-[50%]">
-                <label htmlFor="address" className="text-[14px] text-[#232323]">
+                <label htmlFor="address" className="text-[14px] text-[#fff]">
                   Address
                 </label>
                 <input
@@ -156,7 +153,7 @@ const EditProfile = () => {
                 />
               </div>
               <div className="flex flex-col space-y-2 lg:w-[50%]">
-                <label htmlFor="phone" className="text-[14px] text-[#232323]">
+                <label htmlFor="phone" className="text-[14px] text-[#fff]">
                   Phone Number
                 </label>
                 <input

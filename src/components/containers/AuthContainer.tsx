@@ -5,7 +5,7 @@ interface Props {
 const AuthContainer = ({ children }: Props) => {
   return (
     <div className="flex lg:justify-between lg:flex-row flex-col h-screen overflow-hidden">
-      <div className="lg:w-[50%] pt-[5vh] lg:px-[10vw] px-6">
+      <div className="lg:w-[50%] bg-[#010725] text-[#fff] pt-[5vh] lg:px-[10vw] px-6">
         <img src="/assets/logo.png" alt="logo" className="w-[50px] h-[50px]" />
         {children}
       </div>

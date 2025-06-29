@@ -18,14 +18,14 @@ const ChangePassword = () => {
 
   return (
     <MainContainer>
-      <div className="h-[80vh] overflow-y-auto lg:pb-0 pb-20">
+      <div className="h-[80vh] overflow-y-auto text-[#fff] lg:pb-0 pb-20">
         <h1 className="lg:text-[30px] text-[20px] font-semibold">
           Change Password
         </h1>
 
         <form className="mt-10 space-y-6 lg:w-[30vw]">
           <div className="flex flex-col space-y-2 lg:w-[30vw]">
-            <label htmlFor="password" className="text-[14px] text-[#232323]">
+            <label htmlFor="password" className="text-[14px] text-[#fff]">
               Old Password
             </label>
             <div className="flex space-x-2 justify-between bg-[#ececec] rounded-md p-4 w-full">
@@ -38,7 +38,7 @@ const ChangePassword = () => {
             </div>
           </div>
           <div className="flex flex-col space-y-2 lg:w-[30vw]">
-            <label htmlFor="password" className="text-[14px] text-[#232323]">
+            <label htmlFor="password" className="text-[14px] text-[#fff]">
               New Password
             </label>
             <div className="flex space-x-2 justify-between bg-[#ececec] rounded-md p-4 w-full">
@@ -51,7 +51,7 @@ const ChangePassword = () => {
             </div>
           </div>
           <div className="flex flex-col space-y-2 lg:w-[30vw]">
-            <label htmlFor="password" className="text-[14px] text-[#232323]">
+            <label htmlFor="password" className="text-[14px] text-[#fff]">
               Confirm New Password
             </label>
             <div className="flex space-x-2 justify-between bg-[#ececec] rounded-md p-4 w-full">

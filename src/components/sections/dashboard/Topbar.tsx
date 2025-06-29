@@ -24,7 +24,7 @@ const Topbar = ({ user }: TopbarProps) => {
     <div className="lg:relative fixed w-[100%]">
       <PromoTickerBar />
 
-      <div className="w-[100%] py-3 bg-[#fff] lg:bg-inherit z-50 flex justify-between px-4 border-b-2 border-[#808080] mt-10">
+      <div className="w-[100%] py-3 bg-[#fff] lg:bg-inherit z-50 flex justify-between px-4 border-b-2 border-[#808080] pt-16">
         <img src="/assets/logo.png" alt="logo" className="w-[50px] h-[50px]" />
         <div className="flex items-center lg:space-x-10">
           <div className="lg:block hidden">

@@ -110,7 +110,7 @@ const QuizPage = () => {
       )}
 
       <div className="max-w-3xl h-[80vh] overflow-y-auto mx-auto lg:py-10 space-y-6 pb-30">
-        <h2 className="text-2xl font-bold">
+        <h2 className="text-2xl text-[#fff] font-bold">
           {loading
             ? "Loading..."
             : showReview
@@ -123,7 +123,7 @@ const QuizPage = () => {
         {loading ? (
           <Spinner />
         ) : questions.length === 0 ? (
-          <p className="text-center text-gray-500">No quiz available.</p>
+          <p className="text-center text-gray-300">No quiz available.</p>
         ) : submitted && !showReview ? (
           <div className="text-center space-y-4">
             <p className="text-xl font-semibold">
@@ -145,7 +145,7 @@ const QuizPage = () => {
               key={i}
               className="p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition"
             >
-              <p className="font-semibold mb-2">
+              <p className="font-semibold text-[#fff] mb-2">
                 {i + 1}. {q.question}
               </p>
               <div className="grid grid-cols-2 gap-3">
