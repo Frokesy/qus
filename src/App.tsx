@@ -76,7 +76,7 @@ const App = () => {
       ),
     },
     {
-      path: "/taskspage",
+      path: "/tasks/:id",
       element: (
         <ProtectedRoute>
           <TaskPage />
@@ -84,7 +84,7 @@ const App = () => {
       ),
     },
     {
-      path: "/quizpage",
+      path: "/quiz/:task_id",
       element: (
         <ProtectedRoute>
           <QuizPage />

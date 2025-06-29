@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import { supabase } from "../../utils/supabaseClient";
 import MainContainer from "../../components/containers/MainContainer";
 import SpinnerWheel from "../../components/sections/tasks/SpinnerWheel";
+import Spinner from "../../components/defaults/Spinner";
 
 type TaskItem = {
   id: string;
+  task_id: string;
   title: string;
   desc: string;
   icon: string;
@@ -47,7 +49,7 @@ const Tasks = () => {
           </div>
 
           {loading ? (
-            <p>Loading tasks...</p>
+            <Spinner />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {taskItems.map((item) => (
@@ -59,7 +61,7 @@ const Tasks = () => {
                   <h3 className="text-lg font-semibold mt-2">{item.title}</h3>
                   <p className="text-sm text-gray-600 mt-1">{item.desc}</p>
                   <NavLink
-                    to={item.link}
+                    to={`/quiz/${item.task_id}`}
                     className="mt-4 flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-semibold text-sm"
                   >
                     {item.cta}
