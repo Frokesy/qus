@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 import MainContainer from "../../components/containers/MainContainer";
 import Spinner from "../../components/defaults/Spinner";
 import { useAuthStore } from "../../stores/useAuthStore";
+import { useState } from "react";
+import TrcNoticeModal from "../../components/modals/TrxNoticeModal";
 const Stat = ({
   label,
   value,
@@ -18,6 +20,7 @@ const Stat = ({
 );
 
 const Dashboard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const activities = [
     "✅ You completed Task 18 — $2 added to wallet.",
     "🎉 You spun the wheel and won $5!",
@@ -31,6 +34,16 @@ const Dashboard = () => {
   const { user, loading } = useAuthStore();
 
   if (loading) return <Spinner />;
+
+  const handleCardClick = (label: string) => {
+    if (label === "Transaction Notice") {
+      setIsModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <MainContainer>
@@ -71,11 +84,11 @@ const Dashboard = () => {
       </div>
 
       {/* Enhanced High-Level Statistics Section */}
-      <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-6 mb-8">
+      <div className="grid lg:grid-cols-5 sm:grid-cols-2 grid-cols-1 gap-6 mb-8">
         {[
           {
             label: "Online Users",
-            value: 42,
+            value: 1506,
             color: "green",
             img: "/assets/undraw-one.svg",
           },
@@ -98,30 +111,45 @@ const Dashboard = () => {
             img: "/assets/undraw-four.svg",
             prefix: "$",
           },
-        ].map((stat, i) => (
-          <div
-            key={i}
-            className="bg-[#1B1B2F] text-[#fff] shadow-sm border border-gray-100 rounded-xl p-5 space-y-3 hover:shadow-md transition group"
-          >
-            <h4 className="text-sm font-medium text-gray-100">{stat.label}</h4>
-            <p className={`text-3xl font-bold text-${stat.color}-600`}>
-              {stat.prefix || ""}
-              {stat.value}
-            </p>
-            <img
-              src={stat.img}
-              alt={`${stat.label} illustration`}
-              className="w-full h-[100px] object-contain rounded-md mb-2 group-hover:scale-105 transition-transform"
-            />
-          </div>
-        ))}
+          {
+            label: "Transaction Notice",
+            img: "/assets/undraw-five.svg",
+          },
+        ].map((stat, i) => {
+          const isClickable = stat.label === "Transaction Notice";
+          return (
+            <div
+              key={i}
+              onClick={() => isClickable && handleCardClick(stat.label)}
+              className={`bg-[#1B1B2F] text-[#fff] shadow-sm border border-gray-100 rounded-xl p-5 space-y-3 hover:shadow-md transition group ${
+                isClickable ? "cursor-pointer hover:bg-[#252542]" : ""
+              }`}
+            >
+              <h4 className="text-sm font-medium text-gray-100">
+                {stat.label}
+              </h4>
+              {stat.value !== undefined && (
+                <p className={`text-3xl font-bold text-${stat.color}-600`}>
+                  {stat.prefix || ""}
+                  {stat.value}
+                </p>
+              )}
+              <img
+                src={stat.img}
+                alt={`${stat.label} illustration`}
+                className="w-full h-[100px] object-contain rounded-md mb-2 group-hover:scale-105 transition-transform"
+              />
+            </div>
+          );
+        })}
+        {isModalOpen && <TrcNoticeModal closeModal={closeModal} />}
       </div>
 
       {/* CTA & Recent Activity */}
       <h2 className="lg:text-[20px] text-[#fff] italic font-semibold mb-3">
         Quick Actions
       </h2>
-      <div className="flex lg:flex-row flex-col gap-6 pb-30">
+      <div className="flex lg:flex-row flex-col gap-6 pb-30 items-baseline">
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 w-full items-baseline">
           {[
             {
