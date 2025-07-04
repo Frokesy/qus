@@ -84,7 +84,7 @@ const Dashboard = () => {
       </div>
 
       {/* Enhanced High-Level Statistics Section */}
-      <div className="grid lg:grid-cols-5 sm:grid-cols-2 grid-cols-1 gap-6 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
         {[
           {
             label: "Online Users",
@@ -121,15 +121,17 @@ const Dashboard = () => {
             <div
               key={i}
               onClick={() => isClickable && handleCardClick(stat.label)}
-              className={`bg-[#1B1B2F] text-[#fff] shadow-sm border border-gray-100 rounded-xl p-5 space-y-3 hover:shadow-md transition group ${
+              className={`bg-[#1B1B2F] text-white shadow-sm border border-gray-100 rounded-xl p-3 sm:p-5 space-y-2 sm:space-y-3 hover:shadow-md transition group ${
                 isClickable ? "cursor-pointer hover:bg-[#252542]" : ""
               }`}
             >
-              <h4 className="text-sm font-medium text-gray-100">
+              <h4 className="text-xs sm:text-sm font-medium text-gray-100">
                 {stat.label}
               </h4>
               {stat.value !== undefined && (
-                <p className={`text-3xl font-bold text-${stat.color}-600`}>
+                <p
+                  className={`text-xl sm:text-3xl font-bold text-${stat.color}-600`}
+                >
                   {stat.prefix || ""}
                   {stat.value}
                 </p>
@@ -137,11 +139,12 @@ const Dashboard = () => {
               <img
                 src={stat.img}
                 alt={`${stat.label} illustration`}
-                className="w-full h-[100px] object-contain rounded-md mb-2 group-hover:scale-105 transition-transform"
+                className="w-full h-[60px] sm:h-[100px] object-contain rounded-md mb-1 sm:mb-2 group-hover:scale-105 transition-transform"
               />
             </div>
           );
         })}
+
         {isModalOpen && <TrcNoticeModal closeModal={closeModal} />}
       </div>
 
