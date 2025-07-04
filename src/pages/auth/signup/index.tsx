@@ -146,7 +146,7 @@ const Signup = () => {
   return (
     <AuthContainer>
       <ToastContainer />
-      <div className="flex flex-col lg:h-[70vh] overflow-y-auto items-center justify-center">
+      <div className="flex flex-col lg:h-[80vh] overflow-y-auto items-center pt-6">
         <h2 className="lg:text-[24px] text-[20px] text-center font-semibold">
           Sign Up to get started!
         </h2>
@@ -181,7 +181,7 @@ const Signup = () => {
               onChange={(e) =>
                 setUserDetails({ ...userDetails, name: e.target.value })
               }
-              className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+              className="outline-none bg-[#ececec] rounded-md p-4 w-full placeholder:text-[#333] text-[#333]"
             />
           </div>
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
@@ -195,7 +195,7 @@ const Signup = () => {
               onChange={(e) =>
                 setUserDetails({ ...userDetails, email: e.target.value })
               }
-              className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+              className="outline-none bg-[#ececec] rounded-md p-4 w-full placeholder:text-[#333] text-[#333]"
             />
           </div>
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
@@ -210,7 +210,7 @@ const Signup = () => {
                 onChange={(e) =>
                   setUserDetails({ ...userDetails, password: e.target.value })
                 }
-                className="outline-none w-[100%]"
+                className="outline-none w-[100%] placeholder:text-[#333] text-[#333]"
               />
               <EyeIcon />
             </div>
@@ -230,7 +230,7 @@ const Signup = () => {
                   invitationCode: e.target.value,
                 })
               }
-              className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+              className="outline-none bg-[#ececec] rounded-md p-4 w-full placeholder:text-[#333] text-[#333]"
             />
           </div>
 
@@ -269,12 +269,12 @@ const Signup = () => {
             </button>
           </div>
         </div>
-      </div>
-      <div className="flex lg:mt-[5vh] mt-20 items-end space-x-3">
-        <h2>Already have an account?</h2>
-        <NavLink to="/" className="text-[#007bff] underline">
-          Login
-        </NavLink>
+        <div className="flex lg:mt-[5vh] mt-20 items-end space-x-3">
+          <h2>Already have an account?</h2>
+          <NavLink to="/" className="text-[#007bff] underline">
+            Login
+          </NavLink>
+        </div>
       </div>
     </AuthContainer>
   );

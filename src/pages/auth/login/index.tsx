@@ -68,7 +68,7 @@ const Login = () => {
     <AuthContainer>
       <ToastContainer position="top-center" />
 
-      <div className="flex flex-col h-[60vh] text-[#fff] overflow-y-hidden items-center justify-center">
+      <div className="flex flex-col lg:h-[80vh] overflow-y-auto items-center pt-6">
         <h2 className="lg:text-[24px] text-[20px] text-center font-semibold">
           Welcome back! Sign In to Continue
         </h2>
@@ -103,7 +103,7 @@ const Login = () => {
               onChange={(e) =>
                 setLoginDetails({ ...loginDetails, email: e.target.value })
               }
-              className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+              className="outline-none bg-[#ececec] rounded-md p-4 w-full placeholder:text-[#333] text-[#333]"
             />
           </div>
           <div className="flex flex-col space-y-2 lg:w-[25vw]">
@@ -118,7 +118,7 @@ const Login = () => {
                 onChange={(e) =>
                   setLoginDetails({ ...loginDetails, password: e.target.value })
                 }
-                className="outline-none w-[100%]"
+                className="outline-none w-[100%] placeholder:text-[#333] text-[#333]"
               />
               <EyeIcon />
             </div>
@@ -158,13 +158,12 @@ const Login = () => {
             </button>
           </div>
         </div>
-      </div>
-
-      <div className="flex mt-[15vh] items-end space-x-3">
-        <h2>Don't have an account?</h2>
-        <NavLink to="/signup" className="text-[#007bff] underline">
-          Register
-        </NavLink>
+        <div className="flex mt-[15vh] items-end space-x-3">
+          <h2>Don't have an account?</h2>
+          <NavLink to="/signup" className="text-[#007bff] underline">
+            Register
+          </NavLink>
+        </div>
       </div>
     </AuthContainer>
   );
