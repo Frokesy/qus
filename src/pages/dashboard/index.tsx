@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import TrcNoticeModal from "../../components/modals/TrxNoticeModal";
 import { AnimatePresence } from "framer-motion";
 import AnnouncementModal from "../../components/modals/AnnouncementModal";
+import NewUserBonusModal from "../../components/modals/NewUserBonusModal";
 const Stat = ({
   label,
   value,
@@ -24,6 +25,9 @@ const Stat = ({
 const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
+
+  const [showNewUserModal, setShowNewUserModal] = useState(false);
+
   const activities = [
     "✅ You completed Task 18 — $2 added to wallet.",
     "🎉 You spun the wheel and won $5!",
@@ -41,6 +45,7 @@ const Dashboard = () => {
   };
 
   const hideModal = () => setShowAnnouncementModal(false);
+  const hideModal2 = () => setShowNewUserModal(false);
 
   useEffect(() => {
     const hasSeenModal = sessionStorage.getItem("dashboardModalShown");
@@ -49,9 +54,28 @@ const Dashboard = () => {
       const timer = setTimeout(() => {
         setShowAnnouncementModal(true);
         sessionStorage.setItem("dashboardModalShown", "true");
-      }, 5000);
+      }, 6000);
 
       return () => clearTimeout(timer);
+    }
+  }, []);
+
+  useEffect(() => {
+    const existingUsers = JSON.parse(
+      localStorage.getItem("knownUsers") || "[]",
+    );
+    const isNewUser = !existingUsers.includes(user?.user_id);
+
+    if (isNewUser) {
+      localStorage.setItem("isNewUser", "true");
+
+      existingUsers.push(user?.user_id);
+      localStorage.setItem("knownUsers", JSON.stringify(existingUsers));
+      setTimeout(() => {
+        setShowNewUserModal(true);
+      }, 5000);
+    } else {
+      localStorage.setItem("knownUsers", JSON.stringify(existingUsers));
     }
   }, []);
 
@@ -79,7 +103,9 @@ const Dashboard = () => {
         <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-2">Total Earnings</h3>
           <span className="text-4xl font-bold text-green-600">
-            ${user?.total_earnings || 0}
+            ${" "}
+            {parseFloat(user?.total_earnings as unknown as string) +
+              parseFloat(user?.frozen_balance as unknown as string) || 0}
           </span>
         </div>
 
@@ -131,6 +157,8 @@ const Dashboard = () => {
           },
           {
             label: "Transaction Notice",
+            value: "",
+            color: "yellow",
             img: "/assets/undraw-five.svg",
           },
         ].map((stat, i) => {
@@ -139,7 +167,7 @@ const Dashboard = () => {
             <div
               key={i}
               onClick={() => isClickable && handleCardClick(stat.label)}
-              className={`bg-[#1B1B2F] text-white shadow-sm border border-gray-100 rounded-xl p-3 sm:p-5 space-y-2 sm:space-y-3 hover:shadow-md transition group ${
+              className={`bg-[#1B1B2F] text-white flex flex-col justify-between shadow-sm border border-gray-100 rounded-xl p-3 sm:p-5 space-y-2 sm:space-y-3 hover:shadow-md transition group ${
                 isClickable ? "cursor-pointer hover:bg-[#252542]" : ""
               }`}
             >
@@ -168,6 +196,9 @@ const Dashboard = () => {
       </div>
       <AnimatePresence>
         {showAnnouncementModal && <AnnouncementModal closeModal={hideModal} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showNewUserModal && <NewUserBonusModal closeModal={hideModal2} />}
       </AnimatePresence>
 
       {/* CTA & Recent Activity */}

@@ -93,7 +93,8 @@ const Signup = () => {
         name: userDetails.name,
         email: userDetails.email,
         total_earnings: 0,
-        frozen_balance: 0,
+        frozen_balance: 10,
+        rank: "Novice",
         free_spins: 1,
       },
     ]);

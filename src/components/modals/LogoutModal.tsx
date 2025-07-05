@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,9 +22,12 @@ const modalVariants = {
 const LogoutModal = ({ isOpen, onClose }: Props) => {
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
+    setLoading(true);
     await logout();
+    setLoading(false);
     navigate("/login");
   };
 
@@ -31,14 +35,14 @@ const LogoutModal = ({ isOpen, onClose }: Props) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
           variants={backdropVariants}
           initial="hidden"
           animate="visible"
           exit="hidden"
         >
           <motion.div
-            className="bg-white rounded-lg shadow-lg w-[90%] max-w-md p-6 space-y-4"
+            className="bg-[#1A1A1A] text-white rounded-lg shadow-xl w-[90%] max-w-md p-6 space-y-4"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -52,15 +56,43 @@ const LogoutModal = ({ isOpen, onClose }: Props) => {
             <div className="flex justify-between items-center mt-6 space-x-4">
               <button
                 onClick={onClose}
-                className="w-full py-2 border rounded-md text-gray-700 hover:bg-gray-100"
+                disabled={loading}
+                className="w-full py-2 border border-gray-600 rounded-md text-gray-200 hover:bg-gray-700 disabled:opacity-50"
               >
                 Cancel
               </button>
               <button
                 onClick={handleLogout}
-                className="w-full py-2 bg-red-600 text-white rounded-md hover:bg-red-700 cursor-pointer"
+                disabled={loading}
+                className="w-full py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-70 flex items-center justify-center"
               >
-                Yes, Logout
+                {loading ? (
+                  <span className="flex items-center gap-2">
+                    <svg
+                      className="animate-spin h-4 w-4 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      />
+                    </svg>
+                    Logging out...
+                  </span>
+                ) : (
+                  "Yes, Logout"
+                )}
               </button>
             </div>
           </motion.div>

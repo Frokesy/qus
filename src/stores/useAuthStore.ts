@@ -132,11 +132,16 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error("Logout failed:", error.message);
-    }
     sessionStorage.clear();
     set({ session: null, user: null });
+
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.warn("Supabase sign-out failed:", error.message);
+      }
+    } catch (err) {
+      console.error("Unexpected logout error:", err);
+    }
   },
 }));
