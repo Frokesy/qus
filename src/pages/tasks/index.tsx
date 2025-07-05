@@ -4,6 +4,8 @@ import { supabase } from "../../utils/supabaseClient";
 import MainContainer from "../../components/containers/MainContainer";
 import SpinnerWheel from "../../components/sections/tasks/SpinnerWheel";
 import Spinner from "../../components/defaults/Spinner";
+import { AnimatePresence } from "framer-motion";
+import TaskDescriptionModal from "../../components/modals/TaskDescriptionModa";
 
 type TaskItem = {
   id: string;
@@ -19,6 +21,11 @@ type TaskItem = {
 const Tasks = () => {
   const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -82,6 +89,9 @@ const Tasks = () => {
           <SpinnerWheel />
         </div>
       </div>
+      <AnimatePresence>
+        {isModalOpen && <TaskDescriptionModal closeModal={closeModal} />}
+      </AnimatePresence>
     </MainContainer>
   );
 };
