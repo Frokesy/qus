@@ -1,14 +1,14 @@
 const promoTexts = [
   "🤑 Joe just won $50 from a free spin!",
-  "🎯 Ada earned $15 completing a quiz.",
+  "🎯 Toby earned $15 completing a quiz.",
   "🚀 Ahmed withdrew $120 from his wallet.",
-  "📷 Funke completed the photo task.",
+  "📷 Murphy completed the photo task.",
   "💰 Michael referred 5 friends and earned $25.",
   "🎉 Jane hit the jackpot: $70 in one spin!",
-  "🏆 Kwame scored 10/10 on the logic quiz.",
-  "⏳ Tola's ID verification is complete — $100 released.",
-  "🎥 Chidi submitted a video task and got paid.",
-  "📦 Damilola completed 3 tasks today!",
+  "🏆 Marcus scored 10/10 on the logic quiz.",
+  "⏳ Robert's ID verification is complete — $100 released.",
+  "🎥 Charles submitted a video task and got paid.",
+  "📦 Yoanne completed 3 tasks today!",
 ];
 
 const PromoTickerBar = () => {

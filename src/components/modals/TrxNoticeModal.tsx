@@ -1,7 +1,15 @@
+import { motion } from "framer-motion";
+
 const TrcNoticeModal = ({ closeModal }: { closeModal: () => void }) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl text-black relative max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 overflow-y-auto">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="bg-white rounded-lg shadow-lg p-6 w-full lg:max-w-2xl max-w-[90vw] text-black relative max-h-[90vh] overflow-y-auto"
+      >
         <button
           onClick={closeModal}
           className="absolute top-2 right-3 text-gray-500 hover:text-red-500 text-xl"
@@ -138,7 +146,7 @@ const TrcNoticeModal = ({ closeModal }: { closeModal: () => void }) => {
             <p>Platform operates from 10:00 AM to 11:00 PM Eastern Time.</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

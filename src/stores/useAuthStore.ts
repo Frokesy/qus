@@ -136,6 +136,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     if (error) {
       console.error("Logout failed:", error.message);
     }
+    sessionStorage.clear();
     set({ session: null, user: null });
   },
 }));

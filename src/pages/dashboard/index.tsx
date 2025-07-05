@@ -2,8 +2,10 @@ import { NavLink } from "react-router-dom";
 import MainContainer from "../../components/containers/MainContainer";
 import Spinner from "../../components/defaults/Spinner";
 import { useAuthStore } from "../../stores/useAuthStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TrcNoticeModal from "../../components/modals/TrxNoticeModal";
+import { AnimatePresence } from "framer-motion";
+import AnnouncementModal from "../../components/modals/AnnouncementModal";
 const Stat = ({
   label,
   value,
@@ -21,6 +23,7 @@ const Stat = ({
 
 const Dashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showAnnouncementModal, setShowAnnouncementModal] = useState(false);
   const activities = [
     "✅ You completed Task 18 — $2 added to wallet.",
     "🎉 You spun the wheel and won $5!",
@@ -33,16 +36,31 @@ const Dashboard = () => {
 
   const { user, loading } = useAuthStore();
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const hideModal = () => setShowAnnouncementModal(false);
+
+  useEffect(() => {
+    const hasSeenModal = sessionStorage.getItem("dashboardModalShown");
+
+    if (!hasSeenModal) {
+      const timer = setTimeout(() => {
+        setShowAnnouncementModal(true);
+        sessionStorage.setItem("dashboardModalShown", "true");
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   if (loading) return <Spinner />;
 
   const handleCardClick = (label: string) => {
     if (label === "Transaction Notice") {
       setIsModalOpen(true);
     }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -144,9 +162,13 @@ const Dashboard = () => {
             </div>
           );
         })}
-
-        {isModalOpen && <TrcNoticeModal closeModal={closeModal} />}
+        <AnimatePresence>
+          {isModalOpen && <TrcNoticeModal closeModal={closeModal} />}
+        </AnimatePresence>
       </div>
+      <AnimatePresence>
+        {showAnnouncementModal && <AnnouncementModal closeModal={hideModal} />}
+      </AnimatePresence>
 
       {/* CTA & Recent Activity */}
       <h2 className="lg:text-[20px] text-[#fff] italic font-semibold mb-3">
