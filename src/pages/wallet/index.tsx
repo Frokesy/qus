@@ -1,4 +1,11 @@
-import { Wallet, Banknote, CreditCard, FileDown, Clock } from "lucide-react";
+import {
+  Wallet,
+  Banknote,
+  CreditCard,
+  FileDown,
+  Clock,
+  CreditCardIcon,
+} from "lucide-react";
 import MainContainer from "../../components/containers/MainContainer";
 import { useAuthStore } from "../../stores/useAuthStore";
 import Spinner from "../../components/defaults/Spinner";
@@ -105,6 +112,27 @@ const WalletPage = () => {
               <button className="flex items-center gap-2 w-full bg-emerald-600 text-white px-4 py-2 rounded-md hover:bg-emerald-700 transition">
                 <FileDown className="w-5 h-5" />
                 Download Statement
+              </button>
+            </div>
+          </div>
+
+          <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
+              <CreditCardIcon className="w-5 h-5 text-yellow-400" />
+              Deposit
+            </h3>
+            <div className="space-y-3">
+              <button
+                onClick={() => {
+                  setModalMessage(
+                    "Please contact online customer service to obtain the platform's current wallet address for top-ups.",
+                  );
+                  setShowModal(true);
+                }}
+                className="flex items-center gap-2 w-full bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700 transition"
+              >
+                <Wallet className="w-5 h-5" />
+                Deposit Funds
               </button>
             </div>
           </div>
