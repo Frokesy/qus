@@ -30,7 +30,6 @@ const Tasks = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       const { data, error } = await supabase.from("tasks").select("*");
-      console.log(data);
 
       if (error) {
         console.error("Failed to fetch tasks:", error.message);

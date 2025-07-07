@@ -2,11 +2,30 @@ import { Wallet, Banknote, CreditCard, FileDown, Clock } from "lucide-react";
 import MainContainer from "../../components/containers/MainContainer";
 import { useAuthStore } from "../../stores/useAuthStore";
 import Spinner from "../../components/defaults/Spinner";
+import SelfClosingModal from "../../components/modals/SelfclosingModal";
+import { useState } from "react";
+import WithdrawToWalletModal from "../../components/modals/WithdrawToWalletModal";
 
 const WalletPage = () => {
   const { user, loading } = useAuthStore();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>("");
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+
+  const handleWithdrawSubmit = (amount: number, wallet: string) => {
+    console.log("Withdraw requested:", amount, "to", wallet);
+    // 🪙 Call backend/Supabase/Solana etc.
+  };
+
+  const triggerUnavailableModal = () => {
+    setModalMessage(
+      "This withdrawal option is currently unavailable. Please try again later.",
+    );
+    setShowModal(true);
+  };
 
   if (loading) return <Spinner />;
+
   return (
     <MainContainer>
       <div className="space-y-6 h-[80vh] overflow-y-auto lg:pb-0 pb-20">
@@ -24,37 +43,55 @@ const WalletPage = () => {
                 <p className="text-3xl font-bold text-green-600">
                   ${user?.total_earnings || 0}
                 </p>
-                <p className="mt-1 text-sm italic text-blue-600">
-                  Frozen: ${user?.frozen_balance || 0}
-                </p>
               </div>
               <Wallet className="w-10 h-10 text-blue-500" />
             </div>
+            <div className="mt-4">
+              <h3 className="text-base text-[18px] font-semibold text-gray-300">
+                Frozen Balance
+              </h3>
+              <p className="text-3xl font-bold text-blue-300">
+                ${user?.frozen_balance || 0}
+              </p>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-base text-[18px] font-semibold text-gray-300">
+                Special Lucky Bonus
+              </h3>
+              <p className="text-3xl font-bold text-yellow-300">$2,700.00</p>
+            </div>
           </div>
 
-          {/* Withdrawal Options */}
           <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
             <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
               <Banknote className="w-5 h-5 text-green-600" />
               Withdrawal Options
             </h3>
             <div className="space-y-3">
-              <button className="flex items-center gap-2 w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+              <button
+                className="flex items-center gap-2 w-full bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+                onClick={triggerUnavailableModal}
+              >
                 <CreditCard className="w-5 h-5" />
                 Withdraw with Card
               </button>
-              <button className="flex items-center gap-2 w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">
+              <button
+                onClick={() => setShowWithdrawModal(true)}
+                className="flex items-center gap-2 w-full cursor-pointer bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+              >
                 <Wallet className="w-5 h-5" />
-                Withdraw to Wallet
+                Withdraw to Address
               </button>
-              <button className="flex items-center gap-2 w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition">
+              <button
+                className="flex items-center cursor-pointer gap-2 w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
+                onClick={triggerUnavailableModal}
+              >
                 <Banknote className="w-5 h-5" />
                 Withdraw to Bank
               </button>
             </div>
           </div>
 
-          {/* Transaction Actions */}
           <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
             <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-indigo-600" />
@@ -73,6 +110,18 @@ const WalletPage = () => {
           </div>
         </div>
       </div>
+
+      <SelfClosingModal
+        message={modalMessage}
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      />
+      <WithdrawToWalletModal
+        isOpen={showWithdrawModal}
+        onClose={() => setShowWithdrawModal(false)}
+        onSubmit={handleWithdrawSubmit}
+        balance={user?.total_earnings}
+      />
     </MainContainer>
   );
 };

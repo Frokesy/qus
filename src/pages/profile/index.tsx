@@ -10,7 +10,7 @@ const Profile = () => {
   if (loading) return <Spinner />;
   return (
     <MainContainer>
-      <div className="h-[80vh] overflow-y-auto lg:pb-0 pb-20">
+      <div className="h-[80vh] overflow-y-auto lg:pb-0 pb-20 text-[#fff]">
         <h1 className="lg:text-[30px] text-[20px] font-semibold">Profile</h1>
 
         <div className="flex flex-col justify-center items-center space-y-6 text-center">
