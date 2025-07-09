@@ -54,6 +54,10 @@ const TaskPage = () => {
       ? [...new Set([...user.tasks, taskId])]
       : [taskId];
 
+    const updatedDailyTasks = Array.isArray(user.tasks)
+      ? [...new Set([...user.tasks, taskId])]
+      : [taskId];
+
     const { error } = await supabase
       .from("users")
       .update({
@@ -61,6 +65,7 @@ const TaskPage = () => {
         frozen_balance: updatedFrozen,
         todays_earnings: updatedToday,
         tasks: updatedTasks,
+        daily_tasks: updatedDailyTasks,
       })
       .eq("user_id", user.user_id);
 

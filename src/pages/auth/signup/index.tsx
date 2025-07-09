@@ -96,6 +96,8 @@ const Signup = () => {
         frozen_balance: 10,
         rank: "Novice",
         free_spins: 1,
+        daily_tasks: [],
+        tasks: [],
       },
     ]);
 

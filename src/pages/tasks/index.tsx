@@ -75,7 +75,7 @@ const Tasks = () => {
                   Tasks Completed
                 </h3>
                 <p className="text-lg font-semibold text-blue-400">
-                  {user?.tasks?.length || 0}
+                  {user?.daily_tasks?.length || 0}
                 </p>
               </div>
             </div>

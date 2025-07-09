@@ -18,6 +18,8 @@ export type CustomUser = {
   address: string;
   phone: string;
   tasks: string[];
+  daily_tasks?: string[];
+  last_task_reset?: string;
   member_since: string;
   payment_method: string;
   payment_status: string;
@@ -40,12 +42,11 @@ export const useAuthStore = create<AuthState>((set) => ({
     const { data: sessionData } = await supabase.auth.getSession();
     const session = sessionData.session;
 
-    const updateFreeSpins = async (user: CustomUser) => {
-      const now = dayjs();
+    const now = dayjs();
+    const today = now.format("YYYY-MM-DD");
 
-      if (!user.last_spin_at) {
-        return user;
-      }
+    const updateFreeSpins = async (user: CustomUser) => {
+      if (!user.last_spin_at) return user;
 
       const lastSpin = user.last_spin_at ? dayjs(user.last_spin_at) : null;
       const daysPassed = lastSpin ? now.diff(lastSpin, "day") : 1;
@@ -73,6 +74,30 @@ export const useAuthStore = create<AuthState>((set) => ({
       return user;
     };
 
+    const resetDailyTasksIfNeeded = async (user: CustomUser) => {
+      const lastReset = user.last_task_reset || "";
+      const isNewDay = lastReset !== today;
+
+      if (!isNewDay) return user;
+
+      const { data: updatedUser, error } = await supabase
+        .from("users")
+        .update({
+          daily_tasks: [],
+          todays_earnings: 0,
+          last_task_reset: today,
+        })
+        .eq("user_id", user.user_id)
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Error resetting daily tasks:", error.message);
+      }
+
+      return updatedUser || user;
+    };
+
     if (session?.user) {
       const { data: userData, error } = await supabase
         .from("users")
@@ -86,11 +111,12 @@ export const useAuthStore = create<AuthState>((set) => ({
         return;
       }
 
-      const checkedUser = await updateFreeSpins(userData);
+      let updatedUser = await updateFreeSpins(userData);
+      updatedUser = await resetDailyTasksIfNeeded(updatedUser);
 
       set({
         session,
-        user: checkedUser,
+        user: updatedUser,
         loading: false,
       });
     } else {
@@ -117,11 +143,12 @@ export const useAuthStore = create<AuthState>((set) => ({
           return;
         }
 
-        const checkedUser = await updateFreeSpins(userData);
+        let updatedUser = await updateFreeSpins(userData);
+        updatedUser = await resetDailyTasksIfNeeded(updatedUser);
 
         set({
           session: newSession,
-          user: checkedUser,
+          user: updatedUser,
         });
       } else {
         set({
