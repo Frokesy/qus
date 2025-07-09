@@ -1,19 +1,16 @@
-import { useState } from "react";
 import MainContainer from "../../components/containers/MainContainer";
 import SpinnerWheel from "../../components/sections/tasks/SpinnerWheel";
 import Spinner from "../../components/defaults/Spinner";
-import { AnimatePresence } from "framer-motion";
-import TaskDescriptionModal from "../../components/modals/TaskDescriptionModa";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { taskItems } from "../../components/data";
 import { useNavigate } from "react-router-dom";
 
 const Tasks = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  // const [isModalOpen, setIsModalOpen] = useState(true);
   const { user, loading } = useAuthStore();
   const navigate = useNavigate();
 
-  const closeModal = () => setIsModalOpen(false);
+  // const closeModal = () => setIsModalOpen(false);
 
   const hasCompletedAll = user && user?.tasks?.length >= taskItems.length;
 
@@ -103,9 +100,9 @@ const Tasks = () => {
         </div>
       </div>
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isModalOpen && <TaskDescriptionModal closeModal={closeModal} />}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </MainContainer>
   );
 };
