@@ -10,7 +10,6 @@ import Profile from "./pages/profile";
 import ChangePassword from "./pages/settings/change-password";
 import EditProfile from "./pages/settings/edit-profile";
 import TaskPage from "./pages/tasks/taskspage";
-import QuizPage from "./pages/tasks/quizpage";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/useAuthStore";
 import ProtectedRoute from "./components/defaults/ProtectedRoute";
@@ -81,14 +80,6 @@ const App = () => {
       element: (
         <ProtectedRoute>
           <TaskPage />
-        </ProtectedRoute>
-      ),
-    },
-    {
-      path: "/quiz/:task_id",
-      element: (
-        <ProtectedRoute>
-          <QuizPage />
         </ProtectedRoute>
       ),
     },

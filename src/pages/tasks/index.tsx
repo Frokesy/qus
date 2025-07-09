@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../../utils/supabaseClient";
+import { useState } from "react";
 import MainContainer from "../../components/containers/MainContainer";
 import SpinnerWheel from "../../components/sections/tasks/SpinnerWheel";
 import Spinner from "../../components/defaults/Spinner";
@@ -7,12 +6,22 @@ import { AnimatePresence } from "framer-motion";
 import TaskDescriptionModal from "../../components/modals/TaskDescriptionModa";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { taskItems } from "../../components/data";
+import { useNavigate } from "react-router-dom";
 
 const Tasks = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const { user, loading } = useAuthStore();
+  const navigate = useNavigate();
 
   const closeModal = () => setIsModalOpen(false);
+  const handleStartNewTask = () => {
+    if (!taskItems || taskItems.length === 0) return;
+
+    const randomIndex = Math.floor(Math.random() * taskItems.length);
+    const randomTaskId = taskItems[randomIndex].task_id;
+
+    navigate(`/tasks/${randomTaskId}`);
+  };
 
   if (loading) return <Spinner />;
 
@@ -65,7 +74,10 @@ const Tasks = () => {
               </div>
             </div>
 
-            <button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition-all duration-300 text-white font-semibold py-3 rounded-lg shadow-lg text-lg">
+            <button
+              onClick={handleStartNewTask}
+              className="w-full cursor-pointer mt-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition-all duration-300 text-white font-semibold py-3 rounded-lg shadow-lg text-lg"
+            >
               🚀 Start New Task
             </button>
           </>
