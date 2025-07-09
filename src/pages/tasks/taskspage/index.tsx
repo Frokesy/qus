@@ -1,10 +1,78 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MainContainer from "../../../components/containers/MainContainer";
 import { taskItems } from "../../../components/data";
+import { useAuthStore } from "../../../stores/useAuthStore";
+import { supabase } from "../../../utils/supabaseClient";
+import { useState } from "react";
+import SelfClosingModal from "../../../components/modals/SelfclosingModal";
 
 const TaskPage = () => {
   const { id } = useParams();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
   const task = taskItems.find((item) => item.task_id === id);
+
+  const handleCompleteTask = async (taskId: string, reward: number) => {
+    const { user, fetchSession } = useAuthStore.getState();
+    if (!user) return;
+
+    const hasAlreadyCompleted =
+      Array.isArray(user.tasks) && user.tasks.includes(taskId);
+    if (hasAlreadyCompleted) return;
+
+    setLoading(true);
+
+    const frozen = reward > 10 ? parseFloat((reward * 0.6).toFixed(2)) : 0;
+    const immediateReward = reward - frozen;
+
+    const updatedTotal = (
+      parseFloat(user.total_earnings || "0") + immediateReward
+    ).toFixed(2);
+
+    const updatedFrozen = (
+      parseFloat(user.frozen_balance || "0") + frozen
+    ).toFixed(2);
+
+    const updatedToday = (
+      parseFloat(user.todays_earnings || "0") + reward
+    ).toFixed(2);
+
+    const updatedTasks = Array.isArray(user.tasks)
+      ? [...new Set([...user.tasks, taskId])]
+      : [taskId];
+
+    const { error } = await supabase
+      .from("users")
+      .update({
+        total_earnings: updatedTotal,
+        frozen_balance: updatedFrozen,
+        todays_earnings: updatedToday,
+        tasks: updatedTasks,
+      })
+      .eq("user_id", user.user_id);
+
+    if (error) {
+      console.error("❌ Failed to update user:", error.message);
+      setLoading(false);
+      return;
+    }
+
+    await fetchSession();
+
+    setTimeout(() => {
+      setModalMessage("🎉 Task completed! Your reward has been added.");
+      setShowModal(true);
+      setLoading(false);
+
+      setTimeout(() => {
+        setShowModal(false);
+        navigate("/tasks");
+      }, 2500);
+    }, 1000);
+  };
 
   if (!task) {
     return (
@@ -62,10 +130,44 @@ const TaskPage = () => {
           </a>
         )}
 
-        <button className="bg-green-600 text-white px-6 w-[100%] py-3 rounded-md font-medium hover:bg-green-700 transition">
-          ✅ Complete Task
+        <button
+          onClick={() => handleCompleteTask(task.id.toString(), task.reward)}
+          disabled={loading}
+          className={`bg-green-600 text-white px-6 w-full flex items-center justify-center py-3 rounded-md font-medium hover:bg-green-700 transition ${
+            loading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          {loading ? (
+            <svg
+              className="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              ></path>
+            </svg>
+          ) : (
+            "✅ Complete Task"
+          )}
         </button>
       </div>
+      <SelfClosingModal
+        message={modalMessage}
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      />
     </MainContainer>
   );
 };
