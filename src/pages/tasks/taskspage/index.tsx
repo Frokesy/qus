@@ -5,6 +5,7 @@ import { useAuthStore } from "../../../stores/useAuthStore";
 import { supabase } from "../../../utils/supabaseClient";
 import { useState } from "react";
 import SelfClosingModal from "../../../components/modals/SelfclosingModal";
+import { Star } from "lucide-react";
 
 const TaskPage = () => {
   const { id } = useParams();
@@ -120,6 +121,16 @@ const TaskPage = () => {
         </p>
 
         <p className="text-gray-400">{task.desc}</p>
+        <div className="flex items-center space-x-3">
+          <p className="text-gray-100">Review:</p>
+          <div className="flex items-center">
+            <Star fill="blue" stroke="none" size={20} />
+            <Star fill="blue" stroke="none" size={20} />
+            <Star fill="blue" stroke="none" size={20} />
+            <Star fill="blue" stroke="none" size={20} />
+            <Star fill="blue" stroke="none" size={20} />
+          </div>
+        </div>
 
         <button
           onClick={() => handleCompleteTask(task.id.toString(), task.reward)}
