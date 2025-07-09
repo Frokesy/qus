@@ -21,7 +21,17 @@ const TaskPage = () => {
 
     const hasAlreadyCompleted =
       Array.isArray(user.tasks) && user.tasks.includes(taskId);
-    if (hasAlreadyCompleted) return;
+    if (hasAlreadyCompleted) {
+      setModalMessage(
+        "⚠️ You've already completed this task. Please select a new one.",
+      );
+      setShowModal(true);
+      setTimeout(() => {
+        setShowModal(false);
+        navigate("/tasks");
+      }, 2500);
+      return;
+    }
 
     setLoading(true);
 

@@ -18,28 +18,28 @@ const Sidebar = () => {
         <div className="lg:space-y-6 flex lg:flex-col flex-row justify-between w-[100%]">
           <NavLink
             to="/dashboard"
-            className="flex lg:flex-row flex-col items-center space-x-3 px-4"
+            className="flex lg:flex-row flex-col items-center lg:space-x-3 space-y-2 px-4"
           >
             <DashboardIcon />
             <span>Dashboard</span>
           </NavLink>
           <NavLink
             to="/tasks"
-            className="flex lg:flex-row flex-col items-center space-x-3 px-4"
+            className="flex lg:flex-row flex-col items-center lg:space-x-3 space-y-2 px-4"
           >
             <TaskIcon />
             <span>Tasks</span>
           </NavLink>
           <NavLink
             to="/wallet"
-            className="flex lg:flex-row flex-col items-center space-x-3 px-4"
+            className="flex lg:flex-row flex-col items-center lg:space-x-3 space-y-2 px-4"
           >
             <CashIcon />
             <span>Wallet</span>
           </NavLink>
           <NavLink
             to="/settings"
-            className="flex lg:flex-row flex-col items-center space-x-3 px-4"
+            className="flex lg:flex-row flex-col items-center lg:space-x-3 space-y-2 px-4"
           >
             <SettingsIcon />
             <span>Settings</span>

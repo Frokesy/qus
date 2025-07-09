@@ -14,11 +14,18 @@ const Tasks = () => {
   const navigate = useNavigate();
 
   const closeModal = () => setIsModalOpen(false);
-  const handleStartNewTask = () => {
-    if (!taskItems || taskItems.length === 0) return;
 
-    const randomIndex = Math.floor(Math.random() * taskItems.length);
-    const randomTaskId = taskItems[randomIndex].task_id;
+  const hasCompletedAll = user && user?.tasks?.length >= taskItems.length;
+
+  const handleStartNewTask = () => {
+    if (!taskItems || taskItems.length === 0 || hasCompletedAll) return;
+
+    const uncompletedTasks = taskItems.filter(
+      (task) => !user?.tasks.includes(task.id.toString()),
+    );
+
+    const randomIndex = Math.floor(Math.random() * uncompletedTasks.length);
+    const randomTaskId = uncompletedTasks[randomIndex].task_id;
 
     navigate(`/tasks/${randomTaskId}`);
   };
@@ -44,10 +51,9 @@ const Tasks = () => {
                   Wallet Balance
                 </h3>
                 <p className="text-lg font-semibold text-green-400">
-                  {" "}
-                  ${" "}
-                  {parseFloat(user?.total_earnings as unknown as string) +
-                    parseFloat(user?.frozen_balance as unknown as string) || 0}
+                  $
+                  {parseFloat(user?.total_earnings || "0") +
+                    parseFloat(user?.frozen_balance || "0")}
                 </p>
               </div>
               <div className="bg-[#1F2A40] p-4 rounded-lg text-center shadow-sm">
@@ -74,12 +80,18 @@ const Tasks = () => {
               </div>
             </div>
 
-            <button
-              onClick={handleStartNewTask}
-              className="w-full cursor-pointer mt-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition-all duration-300 text-white font-semibold py-3 rounded-lg shadow-lg text-lg"
-            >
-              🚀 Start New Task
-            </button>
+            {hasCompletedAll ? (
+              <div className="w-full mt-6 bg-green-700 text-white text-center font-semibold py-3 rounded-lg shadow text-lg">
+                🎉 All tasks completed!
+              </div>
+            ) : (
+              <button
+                onClick={handleStartNewTask}
+                className="w-full cursor-pointer mt-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 transition-all duration-300 text-white font-semibold py-3 rounded-lg shadow-lg text-lg"
+              >
+                🚀 Start New Task
+              </button>
+            )}
           </>
         </div>
 
