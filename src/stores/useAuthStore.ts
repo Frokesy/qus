@@ -8,6 +8,7 @@ export type CustomUser = {
   email: string;
   name: string;
   total_earnings: string;
+  todays_earnings: string;
   frozen_balance: string;
   user_id: string;
   free_spins: number;
