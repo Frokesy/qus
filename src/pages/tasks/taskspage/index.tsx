@@ -12,6 +12,7 @@ const TaskPage = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [isReadyToSubmit, setIsReadyToSubmit] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const task = taskItems.find((item) => item.task_id === id);
@@ -29,6 +30,7 @@ const TaskPage = () => {
       setShowModal(true);
       setTimeout(() => {
         setShowModal(false);
+        setIsReadyToSubmit(false);
         navigate("/tasks");
       }, 2500);
       return;
@@ -133,7 +135,13 @@ const TaskPage = () => {
         </div>
 
         <button
-          onClick={() => handleCompleteTask(task.id.toString(), task.reward)}
+          onClick={() => {
+            if (isReadyToSubmit) {
+              handleCompleteTask(task.id.toString(), task.reward);
+            } else {
+              setIsReadyToSubmit(true);
+            }
+          }}
           disabled={loading}
           className={`bg-green-600 text-white px-6 w-full flex items-center justify-center py-3 rounded-md font-medium hover:bg-green-700 transition ${
             loading ? "opacity-50 cursor-not-allowed" : ""
@@ -160,8 +168,10 @@ const TaskPage = () => {
                 d="M4 12a8 8 0 018-8v8z"
               ></path>
             </svg>
-          ) : (
+          ) : isReadyToSubmit ? (
             "✅ Complete Task"
+          ) : (
+            "🚀 Submit Task"
           )}
         </button>
       </div>
