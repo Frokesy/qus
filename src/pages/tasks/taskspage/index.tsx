@@ -15,7 +15,7 @@ const TaskPage = () => {
   const [isReadyToSubmit, setIsReadyToSubmit] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const task = taskItems.find((item) => item.task_id === id);
+  const task = taskItems.find((item) => item.id.toString() === id);
 
   const handleCompleteTask = async (taskId: string, reward: number) => {
     const { user, fetchSession } = useAuthStore.getState();
@@ -110,11 +110,13 @@ const TaskPage = () => {
   return (
     <MainContainer>
       <div className="max-w-3xl h-[80vh] overflow-y-auto mx-auto lg:py-10 space-y-6 text-white">
-        <img
-          src="/assets/start-task.png"
-          alt="Start Task"
-          className="h-60 w-[100%] object-contain"
-        />
+        <div className="flex items-center justify-center">
+          <img
+            src={task.imgUrl}
+            alt="Task Image"
+            className="h-60 w-60 object-contain"
+          />
+        </div>
 
         <h2 className="text-2xl font-bold">{task.title}</h2>
 
@@ -132,6 +134,7 @@ const TaskPage = () => {
             <Star fill="blue" stroke="none" size={20} />
             <Star fill="blue" stroke="none" size={20} />
           </div>
+          ( {task.ratings})
         </div>
 
         <button

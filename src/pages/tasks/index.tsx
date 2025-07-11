@@ -12,7 +12,8 @@ const Tasks = () => {
 
   // const closeModal = () => setIsModalOpen(false);
 
-  const hasCompletedAll = user && user?.tasks?.length >= taskItems.length;
+  const hasCompletedAll =
+    user?.daily_tasks && user?.daily_tasks?.length >= taskItems.length;
 
   const handleStartNewTask = () => {
     if (!taskItems || taskItems.length === 0 || hasCompletedAll) return;
@@ -22,7 +23,7 @@ const Tasks = () => {
     );
 
     const randomIndex = Math.floor(Math.random() * uncompletedTasks.length);
-    const randomTaskId = uncompletedTasks[randomIndex].task_id;
+    const randomTaskId = uncompletedTasks[randomIndex].id;
 
     navigate(`/tasks/${randomTaskId}`);
   };
