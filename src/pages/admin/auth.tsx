@@ -1,3 +1,4 @@
+import { useAdminStore } from "../../stores/useAdminStore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContainer from "../../components/containers/AuthContainer";
@@ -52,12 +53,15 @@ const AdminAuth = () => {
     }
 
     localStorage.setItem("admin", JSON.stringify(data));
+    const setAdmin = useAdminStore.getState().setAdmin;
+
+    setAdmin(data);
 
     toast.success("Login successful! Redirecting...", {
       position: "top-center",
       autoClose: 2000,
       style: { background: "#333", color: "#fff" },
-      onClose: () => navigate("/admin-dashboard"),
+      onClose: () => navigate("/admin/dashboard"),
     });
 
     setLoading(false);

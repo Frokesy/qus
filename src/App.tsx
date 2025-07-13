@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import { useAuthStore } from "./stores/useAuthStore";
 import ProtectedRoute from "./components/defaults/ProtectedRoute";
 import AdminAuth from "./pages/admin/auth";
+import AdminDashboard from "./pages/admin/admindashboard";
+import AdminProtectedRoute from "./components/defaults/AdminProtectedRoute";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -89,6 +91,14 @@ const App = () => {
     {
       path: "/admin",
       element: <AdminAuth />,
+    },
+    {
+      path: "/admin/dashboard",
+      element: (
+        <AdminProtectedRoute>
+          <AdminDashboard />
+        </AdminProtectedRoute>
+      ),
     },
   ]);
 
