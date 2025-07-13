@@ -1,9 +1,11 @@
+import AdminContainer from "../../components/containers/AdminContainer";
+
 const AdminDashboard = () => {
   return (
-    <div>
+    <AdminContainer>
       <h1>Admin Dashboard</h1>
       {/* Add your dashboard content here */}
-    </div>
+    </AdminContainer>
   );
 };
 
