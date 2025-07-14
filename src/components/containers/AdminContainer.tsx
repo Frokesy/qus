@@ -38,6 +38,13 @@ const AdminContainer = ({ children }: Props) => {
               <TaskIcon />
               <span>Spins</span>
             </NavLink>
+            <NavLink
+              to="/admin/inviteCodes"
+              className="flex flex-col lg:flex-row lg:items-start items-center space-x-0 lg:space-x-3 space-y-1 lg:space-y-0 cursor-pointer px-2"
+            >
+              <TaskIcon />
+              <span>Invite Codes</span>
+            </NavLink>
           </div>
 
           <div className="lg:pb-10">

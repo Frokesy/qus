@@ -16,6 +16,7 @@ import ProtectedRoute from "./components/defaults/ProtectedRoute";
 import AdminAuth from "./pages/admin/auth";
 import AdminDashboard from "./pages/admin/admindashboard";
 import Spins from "./pages/admin/spins";
+import InvitationCodes from "./pages/admin/inviteCodes";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -99,6 +100,10 @@ const App = () => {
     {
       path: "/admin/spins",
       element: <Spins />,
+    },
+    {
+      path: "/admin/inviteCodes",
+      element: <InvitationCodes />,
     },
   ]);
 
