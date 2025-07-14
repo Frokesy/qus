@@ -42,13 +42,11 @@ const AdminContainer = ({ children }: Props) => {
           </div>
         </div>
 
-        {/* Main content */}
-        <div className="lg:w-[85%] w-full lg:ml-[15%] ml-0 px-4 lg:px-10 pb-20 pt-6 lg:pt-0 overflow-y-auto">
+        <div className="lg:w-[85%] mt-10 lg:ml-6 w-full px-4 lg:px-10 pb-20 pt-6 lg:pt-0 overflow-y-auto">
           {children}
         </div>
       </div>
 
-      {/* Logout Modal */}
       <LogoutModal
         isOpen={showAdminLogoutModal}
         onClose={() => setShowAdminLogoutModal(false)}
