@@ -19,9 +19,9 @@ const Spins = () => {
       return;
     }
 
-    const { id, ...rest } = data;
+    const { id, ...spinCols } = data;
     setSpinId(id);
-    setSpinValues(rest);
+    setSpinValues(spinCols);
     setLoading(false);
   };
 
@@ -55,21 +55,25 @@ const Spins = () => {
   return (
     <AdminContainer>
       <ToastContainer />
-      <h1 className="text-white text-2xl font-semibold mb-6">Spin Settings</h1>
+      <h1 className="text-white text-3xl font-bold mb-8">Spin Settings</h1>
 
       {loading ? (
-        <p className="text-white">Loading spin values...</p>
+        <p className="text-white text-lg">Loading spin values...</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
           {Object.keys(spinValues).map((key) => (
-            <div key={key} className="bg-[#1B1B2F] p-4 rounded-lg text-white">
-              <label className="block mb-2 capitalize">
+            <div
+              key={key}
+              className="bg-[#111827] text-white p-5 rounded-xl border border-[#333] hover:shadow-lg transition-all"
+            >
+              <label className="block mb-2 text-sm text-gray-300 capitalize">
                 {key.replace(/_/g, " ")} ($)
               </label>
               <input
+                type="text"
                 value={spinValues[key]}
                 onChange={(e) => handleChange(key, e.target.value)}
-                className="w-full px-3 py-2 rounded bg-[#333] text-white"
+                className="w-full px-4 py-2 rounded bg-[#1F2937] text-white border border-[#555] focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           ))}
@@ -77,7 +81,7 @@ const Spins = () => {
       )}
 
       {!loading && (
-        <div className="mt-8 flex justify-center">
+        <div className="mt-10 flex justify-center">
           <button
             onClick={updateSpinValues}
             disabled={saving}
@@ -85,7 +89,7 @@ const Spins = () => {
               saving
                 ? "bg-green-400 cursor-not-allowed"
                 : "bg-green-600 hover:bg-green-700"
-            } text-white py-2 px-6 rounded-lg font-semibold flex items-center gap-2`}
+            } text-white py-3 px-8 rounded-lg font-semibold flex items-center gap-2 transition-all duration-150`}
           >
             {saving && (
               <svg
