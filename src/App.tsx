@@ -15,6 +15,7 @@ import { useAuthStore } from "./stores/useAuthStore";
 import ProtectedRoute from "./components/defaults/ProtectedRoute";
 import AdminAuth from "./pages/admin/auth";
 import AdminDashboard from "./pages/admin/admindashboard";
+import Spins from "./pages/admin/spins";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -94,6 +95,10 @@ const App = () => {
     {
       path: "/admin/dashboard",
       element: <AdminDashboard />,
+    },
+    {
+      path: "/admin/spins",
+      element: <Spins />,
     },
   ]);
 

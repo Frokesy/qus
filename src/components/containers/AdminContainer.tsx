@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LogoutModal from "../modals/LogoutModal";
-import { Avatar, DashboardIcon, LogoutIcon } from "../svgs/Icons";
+import { Avatar, DashboardIcon, LogoutIcon, TaskIcon } from "../svgs/Icons";
+import { NavLink } from "react-router-dom";
 
 interface Props {
   children: React.ReactNode;
@@ -20,15 +21,23 @@ const AdminContainer = ({ children }: Props) => {
         </div>
       </div>
 
-      {/* Body */}
       <div className="flex flex-1 pt-[72px] lg:pt-[90px]">
-        {/* Sidebar / BottomNav */}
         <div className="lg:w-[15%] w-full lg:h-auto fixed lg:relative bottom-0 lg:flex-col lg:border-r-2 border-t-2 lg:border-t-0 border-[#808080] bg-[#010725] text-white z-40 flex justify-between px-6 py-4">
           <div className="flex lg:flex-col w-full justify-between lg:space-y-6">
-            <div className="flex flex-col lg:flex-row lg:items-start items-center space-x-0 lg:space-x-3 space-y-1 lg:space-y-0 cursor-pointer px-2">
+            <NavLink
+              to="/admin/dashboard"
+              className="flex flex-col lg:flex-row lg:items-start items-center space-x-0 lg:space-x-3 space-y-1 lg:space-y-0 cursor-pointer px-2"
+            >
               <DashboardIcon />
               <span>Dashboard</span>
-            </div>
+            </NavLink>
+            <NavLink
+              to="/admin/spins"
+              className="flex flex-col lg:flex-row lg:items-start items-center space-x-0 lg:space-x-3 space-y-1 lg:space-y-0 cursor-pointer px-2"
+            >
+              <TaskIcon />
+              <span>Spins</span>
+            </NavLink>
           </div>
 
           <div className="lg:pb-10">
