@@ -13,6 +13,10 @@ import TaskPage from "./pages/tasks/taskspage";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/useAuthStore";
 import ProtectedRoute from "./components/defaults/ProtectedRoute";
+import AdminAuth from "./pages/admin/auth";
+import AdminDashboard from "./pages/admin/admindashboard";
+import Spins from "./pages/admin/spins";
+import InvitationCodes from "./pages/admin/inviteCodes";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -82,6 +86,24 @@ const App = () => {
           <TaskPage />
         </ProtectedRoute>
       ),
+    },
+
+    //admin routes
+    {
+      path: "/admin",
+      element: <AdminAuth />,
+    },
+    {
+      path: "/admin/dashboard",
+      element: <AdminDashboard />,
+    },
+    {
+      path: "/admin/spins",
+      element: <Spins />,
+    },
+    {
+      path: "/admin/inviteCodes",
+      element: <InvitationCodes />,
     },
   ]);
 
