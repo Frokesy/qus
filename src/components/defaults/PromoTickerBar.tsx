@@ -1,7 +1,7 @@
 const promoTexts = [
   "🤑 Joe just won $50 from a free spin!",
-  "🎯 Toby earned $15 completing a quiz.",
-  "🚀 Ahmed withdrew $120 from his wallet.",
+  "🎯 Brian earned $15 completing a quiz.",
+  "🚀 Maxi withdrew $120 from his wallet.",
   "📷 Murphy completed the photo task.",
   "💰 Michael referred 5 friends and earned $25.",
   "🎉 Jane hit the jackpot: $70 in one spin!",
