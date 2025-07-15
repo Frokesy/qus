@@ -150,7 +150,7 @@ const Signup = () => {
   return (
     <AuthContainer>
       <ToastContainer />
-      <div className="flex flex-col lg:h-[80vh] overflow-y-auto items-center pt-6">
+      <div className="flex flex-col lg:h-[80vh] min-h-screen overflow-y-auto items-center pt-6">
         <h2 className="lg:text-[24px] text-[20px] text-center font-semibold">
           Sign Up to get started!
         </h2>

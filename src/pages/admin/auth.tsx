@@ -72,7 +72,7 @@ const AdminAuth = () => {
     <AuthContainer>
       <ToastContainer position="top-center" />
 
-      <div className="flex flex-col lg:h-[80vh] overflow-y-auto items-center pt-[20vh]">
+      <div className="flex flex-col lg:h-[80vh] min-h-screen overflow-y-auto items-center pt-[20vh]">
         <h2 className="lg:text-[24px] text-[20px] text-center font-semibold">
           Admin Login
         </h2>
