@@ -19,6 +19,7 @@ const Signup = () => {
     invitationCode: "",
   });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSignup = async () => {
@@ -207,15 +208,22 @@ const Signup = () => {
             </label>
             <div className="flex space-x-2 justify-between bg-[#ececec] rounded-md p-4 w-full">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 value={userDetails.password}
                 onChange={(e) =>
                   setUserDetails({ ...userDetails, password: e.target.value })
                 }
-                className="outline-none w-[100%] placeholder:text-[#333] text-[#333]"
+                className="outline-none w-full placeholder:text-[#333] text-[#333] bg-transparent"
               />
-              <EyeIcon />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="text-[#333]"
+                aria-label="Toggle password visibility"
+              >
+                <EyeIcon />
+              </button>
             </div>
           </div>
 
