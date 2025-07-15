@@ -1,0 +1,13 @@
+deployment:
+  tasks:
+    # Step 1: Move into the repository folder
+    - cd $DEPLOYMENT_SOURCE
+
+    # Step 2: Install dependencies using cPanel's Node.js path
+    - /opt/cpanel/ea-nodejs18/bin/npm install
+
+    # Step 3: Build the production version
+    - /opt/cpanel/ea-nodejs18/bin/npm run build
+
+    # Step 4: Sync build folder to public_html
+    - /bin/rsync -av --delete build/ /home/lunuxwor/public_html/
