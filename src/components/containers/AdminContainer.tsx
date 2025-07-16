@@ -65,6 +65,7 @@ const AdminContainer = ({ children }: Props) => {
 
       <LogoutModal
         isOpen={showAdminLogoutModal}
+        isAdmin={true}
         onClose={() => setShowAdminLogoutModal(false)}
       />
     </div>
