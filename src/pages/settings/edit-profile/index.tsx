@@ -107,7 +107,7 @@ const EditProfile = () => {
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+                  className="outline-none bg-[#ececec] text-[#000] rounded-md p-4 w-full"
                 />
               </div>
               <div className="flex flex-col space-y-2 lg:w-[50%]">
@@ -119,7 +119,7 @@ const EditProfile = () => {
                   id="username"
                   value={formData.username}
                   onChange={handleChange}
-                  className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+                  className="outline-none bg-[#ececec] text-[#000] rounded-md p-4 w-full"
                 />
               </div>
             </div>
@@ -134,7 +134,7 @@ const EditProfile = () => {
                 id="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+                className="outline-none bg-[#ececec] text-[#000] rounded-md p-4 w-full"
               />
             </div>
 
@@ -149,7 +149,7 @@ const EditProfile = () => {
                   id="address"
                   value={formData.address}
                   onChange={handleChange}
-                  className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+                  className="outline-none bg-[#ececec] text-[#000] rounded-md p-4 w-full"
                 />
               </div>
               <div className="flex flex-col space-y-2 lg:w-[50%]">
@@ -161,7 +161,7 @@ const EditProfile = () => {
                   id="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="outline-none bg-[#ececec] rounded-md p-4 w-full"
+                  className="outline-none bg-[#ececec] text-[#000] rounded-md p-4 w-full"
                 />
               </div>
             </div>

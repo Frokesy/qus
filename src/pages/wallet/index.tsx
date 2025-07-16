@@ -12,6 +12,7 @@ import Spinner from "../../components/defaults/Spinner";
 import SelfClosingModal from "../../components/modals/SelfclosingModal";
 import { useState } from "react";
 import WithdrawToWalletModal from "../../components/modals/WithdrawToWalletModal";
+import { supabase } from "../../utils/supabaseClient";
 
 const WalletPage = () => {
   const { user, loading } = useAuthStore();
@@ -19,9 +20,41 @@ const WalletPage = () => {
   const [modalMessage, setModalMessage] = useState<string>("");
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
 
-  const handleWithdrawSubmit = (amount: number, wallet: string) => {
-    console.log("Withdraw requested:", amount, "to", wallet);
-    // 🪙 Call backend/Supabase/Solana etc.
+  const handleWithdrawSubmit = async (amount: number, wallet: string) => {
+    if (!user || !user.id) return;
+
+    const currentBalance = parseFloat(user.total_earnings || "0");
+    const newBalance = currentBalance - amount;
+
+    if (newBalance < 0) {
+      setModalMessage("Insufficient balance for withdrawal.");
+      setShowModal(true);
+      return;
+    }
+
+    setModalMessage("Processing your withdrawal...");
+    setShowModal(true);
+
+    const { error } = await supabase
+      .from("users")
+      .update({ total_earnings: newBalance.toString() })
+      .eq("user_id", user.user_id);
+
+    if (error) {
+      setModalMessage("Failed to process withdrawal. Please try again.");
+      return;
+    }
+
+    useAuthStore.setState((prev) => ({
+      user: {
+        ...prev.user!,
+        total_earnings: newBalance.toString(),
+      },
+    }));
+
+    setModalMessage(
+      `Withdrawal of $${amount} to ${wallet} was successful! New balance: $${newBalance}.`,
+    );
   };
 
   const triggerUnavailableModal = () => {

@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
 import MainContainer from "../../components/containers/MainContainer";
 import { CaretDown } from "../../components/svgs/Icons";
+import { useState } from "react";
+import LogoutModal from "../../components/modals/LogoutModal";
 
 const Settings = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <MainContainer>
       <div className="h-[80vh] text-[#fff]">
@@ -20,14 +23,14 @@ const Settings = () => {
               <CaretDown />
             </div>
           </NavLink>
-          <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
+          {/* <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
             <span className="lg:text-[16px] text-[14px]">
               Update Payment Information
             </span>
             <div className="rotate-270">
               <CaretDown />
             </div>
-          </div>
+          </div> */}
           <NavLink
             to="/settings/change-password"
             className="flex items-center justify-between border-b-2 border-[#ccc] pb-4"
@@ -37,21 +40,25 @@ const Settings = () => {
               <CaretDown />
             </div>
           </NavLink>
-          <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
+          {/* <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
             <span className="lg:text-[16px] text-[14px]">
               Enable Two-Factor Authentication
             </span>
             <div className="rotate-270">
               <CaretDown />
             </div>
-          </div>
-          <div className="flex items-center justify-between border-b-2 border-[#ccc] pb-4">
+          </div> */}
+          <div
+            onClick={() => setShowModal(true)}
+            className="flex items-center justify-between cursor-pointer border-b-2 border-[#ccc] pb-4"
+          >
             <span className="lg:text-[16px] text-[14px] text-red-500">
               Logout
             </span>
           </div>
         </div>
       </div>
+      <LogoutModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </MainContainer>
   );
 };

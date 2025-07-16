@@ -45,9 +45,9 @@ const Profile = () => {
                 </p>
               ) : (
                 <div className="flex flex-col space-y-1">
-                  <p>Total Jobs Completed: 10</p>
+                  <p>Total Tasks Completed: {user?.tasks.length}</p>
                   <p>Average Rating: 4.8/5</p>
-                  <p>Feedback Received: 5</p>
+                  <p>Feedback Received: 0</p>
                 </div>
               )}
             </div>
@@ -58,17 +58,6 @@ const Profile = () => {
             <p>Username: {user?.username ? user.username : "N/A"}</p>
             <p>Phone: {user?.phone ? user.phone : "N/A"}</p>
             <p>Address: {user?.address ? user.address : "N/A"}</p>
-            <p>
-              Member Since: {user?.member_since ? user.member_since : "N/A"}
-            </p>
-            <p>
-              Payment Method:{" "}
-              {user?.payment_method ? user.payment_method : "N/A"}
-            </p>
-            <p>
-              Payment Status:{" "}
-              {user?.payment_status ? user.payment_status : "N/A"}
-            </p>
           </div>
         </div>
 
