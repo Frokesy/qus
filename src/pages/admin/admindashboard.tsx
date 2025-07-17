@@ -188,6 +188,16 @@ const AdminDashboard = () => {
                     className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"
                   />
                 </div>
+                <div>
+                  <label className="text-sm text-gray-400">Free Spins </label>
+                  <input
+                    value={user.free_spins}
+                    onChange={(e) =>
+                      handleInputChange(user.id, "free_spins", e.target.value)
+                    }
+                    className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"
+                  />
+                </div>
               </div>
 
               <button
