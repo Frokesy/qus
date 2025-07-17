@@ -10,6 +10,7 @@ export type CustomUser = {
   total_earnings: string;
   todays_earnings: string;
   frozen_balance: string;
+  special_bonus: string;
   user_id: string;
   free_spins: number;
   last_spin_at?: string | null;

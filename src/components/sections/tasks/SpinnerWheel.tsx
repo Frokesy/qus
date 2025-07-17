@@ -28,8 +28,7 @@ const colors = [
 type SpinUpdates = {
   free_spins: number;
   last_spin_at: string;
-  frozen_balance: string;
-  total_earnings: string;
+  special_bonus: string;
 };
 
 export default function SpinnerWheel() {
@@ -55,6 +54,7 @@ export default function SpinnerWheel() {
 
     setAngle(targetAngle);
     console.log(angle);
+
     await controls.start({
       rotate: targetAngle,
       transition: { duration: 3, ease: "easeInOut" },
@@ -66,27 +66,15 @@ export default function SpinnerWheel() {
       const updates: SpinUpdates = {
         free_spins: user.free_spins - 1,
         last_spin_at: new Date().toISOString(),
-        frozen_balance: user.frozen_balance || "0",
-        total_earnings: user.total_earnings || "0",
+        special_bonus: user.special_bonus || "0",
       };
 
       if (selectedValue.startsWith("$")) {
         const amount = parseFloat(selectedValue.replace("$", ""));
         if (!isNaN(amount)) {
-          if (amount > 5) {
-            const forty = amount * 0.4;
-            const sixty = amount * 0.6;
-            updates.total_earnings = (
-              parseFloat(user.total_earnings || "0") + forty
-            ).toFixed(2);
-            updates.frozen_balance = (
-              (parseFloat(user.frozen_balance || "0") || 0) + sixty
-            ).toFixed(2);
-          } else {
-            updates.total_earnings = (
-              parseFloat(user.total_earnings || "0") + amount
-            ).toFixed(2);
-          }
+          updates.special_bonus = (
+            parseFloat(user.special_bonus || "0") + amount
+          ).toFixed(2);
         }
       }
 
@@ -107,7 +95,6 @@ export default function SpinnerWheel() {
       });
 
       setAngle(0);
-
       setSpinning(false);
     }, 1000);
 

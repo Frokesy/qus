@@ -28,15 +28,15 @@ const Dashboard = () => {
 
   const [showNewUserModal, setShowNewUserModal] = useState(false);
 
-  const activities = [
-    "✅ You completed Task 18 — $2 added to wallet.",
-    "🎉 You spun the wheel and won $5!",
-    "🔒 ID verification pending. $100 frozen.",
-    "🧠 Scored 8/10 in “Tech Quiz” — earned $15.",
-    "💰 Earned $20 from referrals.",
-    "💰 Earned $50 from referrals.",
-    "💰 Earned $100 from referrals.",
-  ];
+  // const activities = [
+  //   "✅ You completed Task 18 — $2 added to wallet.",
+  //   "🎉 You spun the wheel and won $5!",
+  //   "🔒 ID verification pending. $100 frozen.",
+  //   "🧠 Scored 8/10 in “Tech Quiz” — earned $15.",
+  //   "💰 Earned $20 from referrals.",
+  //   "💰 Earned $50 from referrals.",
+  //   "💰 Earned $100 from referrals.",
+  // ];
 
   const { user, loading } = useAuthStore();
 
@@ -98,23 +98,32 @@ const Dashboard = () => {
         </p>
       </div>
 
-      {/* Summary Cards */}
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 mb-12">
         <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-2">Total Earnings</h3>
           <span className="text-4xl font-bold text-green-600">
             ${" "}
             {parseFloat(user?.total_earnings as unknown as string) +
-              parseFloat(user?.frozen_balance as unknown as string) || 0}
+              parseFloat(user?.frozen_balance as unknown as string) ||
+              0 + parseFloat(user?.special_bonus as unknown as string) ||
+              0}
           </span>
         </div>
 
         <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6">
           <h3 className="text-lg font-semibold mb-4">Tasks</h3>
           <div className="flex justify-between text-center text-sm">
-            <Stat label="Total" value={10} color="blue" />
-            <Stat label="Completed" value={5} color="green" />
-            <Stat label="Avg. Rating" value={4.5} color="yellow" />
+            <Stat label="Total" value={30} color="blue" />
+            <Stat
+              label="Completed"
+              value={user?.tasks.length || 0}
+              color="green"
+            />
+            <Stat
+              label="Avg. Rating"
+              value={user?.tasks.length ? 4.5 : 0}
+              color="yellow"
+            />
             <Stat label="Feedbacks" value={0} color="cyan" />
           </div>
         </div>
@@ -127,12 +136,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Enhanced High-Level Statistics Section */}
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
         {[
           {
             label: "Online Users",
-            value: 1506,
+            value: 12071,
             color: "green",
             img: "/assets/undraw-one.svg",
           },
@@ -144,13 +152,13 @@ const Dashboard = () => {
           },
           {
             label: "Tasks Completed",
-            value: 134,
+            value: 1537,
             color: "indigo",
             img: "/assets/undraw-three.svg",
           },
           {
             label: "Total Earned by Users",
-            value: 4520,
+            value: 452200,
             color: "emerald",
             img: "/assets/undraw-four.svg",
             prefix: "$",
@@ -201,12 +209,11 @@ const Dashboard = () => {
         {showNewUserModal && <NewUserBonusModal closeModal={hideModal2} />}
       </AnimatePresence>
 
-      {/* CTA & Recent Activity */}
       <h2 className="lg:text-[20px] text-[#fff] italic font-semibold mb-3">
         Quick Actions
       </h2>
       <div className="flex lg:flex-row flex-col gap-6 pb-30 items-baseline">
-        <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 w-full items-baseline">
+        <div className="grid lg:grid-cols-4 grid-cols-1 gap-6 w-full items-baseline">
           {[
             {
               title: "Wallet Summary",
@@ -231,7 +238,7 @@ const Dashboard = () => {
               title: "Update Profile",
               description: "Update your profile information",
               action: "Update now",
-              link: "/profile",
+              link: "/settings/edit-profile",
             },
           ].map((item, i) => (
             <div
@@ -250,14 +257,14 @@ const Dashboard = () => {
         </div>
 
         {/* Recent Activities */}
-        <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6 lg:w-[25%]">
+        {/* <div className="bg-[#1B1B2F] text-[#fff] shadow-md rounded-xl p-6 lg:w-[25%]">
           <h3 className="text-lg font-semibold mb-4">Recent Activities</h3>
           <div className="space-y-2 text-sm text-gray-300">
             {activities.map((item, idx) => (
               <p key={idx}>• {item}</p>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </MainContainer>
   );
