@@ -7,7 +7,7 @@ import useAdminLogout from "../../stores/useAdminLogout";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  isAdmin: boolean;
+  isAdmin?: boolean;
 }
 
 const backdropVariants = {
