@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { motion, AnimatePresence } from "framer-motion";
+import useAdminLogout from "../../stores/useAdminLogout";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  isAdmin?: boolean;
 }
 
 const backdropVariants = {
@@ -19,16 +21,21 @@ const modalVariants = {
   exit: { scale: 0.9, opacity: 0, y: 50 },
 };
 
-const LogoutModal = ({ isOpen, onClose }: Props) => {
+const LogoutModal = ({ isOpen, onClose, isAdmin }: Props) => {
   const logout = useAuthStore((state) => state.logout);
+  const adminLogout = useAdminLogout();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
     setLoading(true);
-    await logout();
+    if (isAdmin) {
+      await adminLogout();
+    } else {
+      await logout();
+    }
     setLoading(false);
-    navigate("/login");
+    navigate(isAdmin ? "/admin" : "/login");
   };
 
   return (

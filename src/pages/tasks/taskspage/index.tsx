@@ -23,6 +23,7 @@ const TaskPage = () => {
 
     const hasAlreadyCompleted =
       Array.isArray(user.tasks) && user.tasks.includes(taskId);
+
     if (hasAlreadyCompleted) {
       setModalMessage(
         "⚠️ You've already completed this task. Please select a new one.",
@@ -38,15 +39,8 @@ const TaskPage = () => {
 
     setLoading(true);
 
-    const frozen = reward > 10 ? parseFloat((reward * 0.6).toFixed(2)) : 0;
-    const immediateReward = reward - frozen;
-
     const updatedTotal = (
-      parseFloat(user.total_earnings || "0") + immediateReward
-    ).toFixed(2);
-
-    const updatedFrozen = (
-      parseFloat(user.frozen_balance || "0") + frozen
+      parseFloat(user.total_earnings || "0") + reward
     ).toFixed(2);
 
     const updatedToday = (
@@ -65,7 +59,6 @@ const TaskPage = () => {
       .from("users")
       .update({
         total_earnings: updatedTotal,
-        frozen_balance: updatedFrozen,
         todays_earnings: updatedToday,
         tasks: updatedTasks,
         daily_tasks: updatedDailyTasks,

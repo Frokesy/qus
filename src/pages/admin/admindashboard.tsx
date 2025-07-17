@@ -140,7 +140,7 @@ const AdminDashboard = () => {
 
                 <div>
                   <label className="text-sm text-gray-400">
-                    Total Earnings ($)
+                    Task Earnings ($)
                   </label>
                   <input
                     value={user.total_earnings}
@@ -148,6 +148,23 @@ const AdminDashboard = () => {
                       handleInputChange(
                         user.id,
                         "total_earnings",
+                        e.target.value,
+                      )
+                    }
+                    className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-sm text-gray-400">
+                    Special Bonus ($)
+                  </label>
+                  <input
+                    value={user.special_bonus}
+                    onChange={(e) =>
+                      handleInputChange(
+                        user.id,
+                        "special_bonus",
                         e.target.value,
                       )
                     }
@@ -167,6 +184,16 @@ const AdminDashboard = () => {
                         "frozen_balance",
                         e.target.value,
                       )
+                    }
+                    className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm text-gray-400">Free Spins </label>
+                  <input
+                    value={user.free_spins}
+                    onChange={(e) =>
+                      handleInputChange(user.id, "free_spins", e.target.value)
                     }
                     className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"
                   />

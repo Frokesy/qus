@@ -21,9 +21,6 @@ const UserDropdown = () => {
       >
         Settings
       </NavLink>
-      <button className="text-[15px] cursor-pointer w-[100%] text-start hover:bg-gray-600 hover:rounded-xl p-3 transition-all duration-300 ease-in-out lg:border-none border-b-2 border-[#404040]">
-        Logout
-      </button>
     </motion.div>
   );
 };

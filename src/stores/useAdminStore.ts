@@ -11,27 +11,23 @@ type AdminStore = {
   loading: boolean;
   setAdmin: (admin: Admin) => void;
   clearAdmin: () => void;
-  fetchAdminFromLocal: () => void;
 };
 
-export const useAdminStore = create<AdminStore>((set) => ({
-  admin: null,
-  loading: false,
+export const useAdminStore = create<AdminStore>((set) => {
+  const storedAdmin = localStorage.getItem("admin");
 
-  setAdmin: (admin) => {
-    localStorage.setItem("admin", JSON.stringify(admin));
-    set({ admin });
-  },
+  return {
+    admin: storedAdmin ? JSON.parse(storedAdmin) : null,
+    loading: false,
 
-  clearAdmin: () => {
-    localStorage.removeItem("admin");
-    set({ admin: null });
-  },
+    setAdmin: (admin) => {
+      localStorage.setItem("admin", JSON.stringify(admin));
+      set({ admin });
+    },
 
-  fetchAdminFromLocal: () => {
-    const stored = localStorage.getItem("admin");
-    if (stored) {
-      set({ admin: JSON.parse(stored) });
-    }
-  },
-}));
+    clearAdmin: () => {
+      localStorage.removeItem("admin");
+      set({ admin: null });
+    },
+  };
+});

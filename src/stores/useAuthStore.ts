@@ -10,6 +10,7 @@ export type CustomUser = {
   total_earnings: string;
   todays_earnings: string;
   frozen_balance: string;
+  special_bonus: string;
   user_id: string;
   free_spins: number;
   last_spin_at?: string | null;
@@ -48,17 +49,18 @@ export const useAuthStore = create<AuthState>((set) => ({
     const updateFreeSpins = async (user: CustomUser) => {
       if (!user.last_spin_at) return user;
 
-      const lastSpin = user.last_spin_at ? dayjs(user.last_spin_at) : null;
-      const daysPassed = lastSpin ? now.diff(lastSpin, "day") : 1;
+      const lastSpin = dayjs(user.last_spin_at);
+      const now = dayjs();
+      const hoursPassed = now.diff(lastSpin, "hour");
 
-      if (daysPassed >= 1) {
-        const updatedSpins = user.free_spins + daysPassed;
+      if (hoursPassed >= 48) {
+        const currentSpins = Number(user.free_spins || 0);
+        const updatedSpins = currentSpins + 1;
 
         const { data: updatedUser, error } = await supabase
           .from("users")
           .update({
             free_spins: updatedSpins,
-            last_spin_at: now.toISOString(),
           })
           .eq("user_id", user.user_id)
           .select()

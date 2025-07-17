@@ -1,13 +1,41 @@
+import { useEffect, useState } from "react";
 import { User } from "lucide-react";
 import MainContainer from "../../components/containers/MainContainer";
 import { useAuthStore } from "../../stores/useAuthStore";
 import Spinner from "../../components/defaults/Spinner";
 import { NavLink } from "react-router-dom";
+import { supabase } from "../../utils/supabaseClient";
 
 const Profile = () => {
   const { user, loading } = useAuthStore();
+  const [inviteCode, setInviteCode] = useState<string | null>(null);
+  const [codeLoading, setCodeLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInviteCode = async () => {
+      if (!user?.user_id) return;
+
+      const { data, error } = await supabase
+        .from("inviteCodes")
+        .select("code")
+        .eq("user_id", user.user_id)
+        .single();
+
+      if (error) {
+        console.error("Failed to fetch invite code:", error.message);
+        setInviteCode(null);
+      } else {
+        setInviteCode(data?.code || null);
+      }
+
+      setCodeLoading(false);
+    };
+
+    fetchInviteCode();
+  }, [user?.user_id]);
 
   if (loading) return <Spinner />;
+
   return (
     <MainContainer>
       <div className="h-[80vh] overflow-y-auto lg:pb-0 pb-20 text-[#fff]">
@@ -22,6 +50,19 @@ const Profile = () => {
             <span className="text-gray-500 text-[18px] italic">
               {user?.email}
             </span>
+          </div>
+
+          <div className="mt-4">
+            <h2 className="text-[18px] font-semibold">Invite Code</h2>
+            {codeLoading ? (
+              <p className="text-[14px] italic text-gray-400">Fetching...</p>
+            ) : inviteCode ? (
+              <p className="text-[16px] font-mono bg-gray-800 p-2 rounded">
+                {inviteCode}
+              </p>
+            ) : (
+              <p className="text-[14px] italic text-gray-400">No code found</p>
+            )}
           </div>
         </div>
 
@@ -45,30 +86,18 @@ const Profile = () => {
                 </p>
               ) : (
                 <div className="flex flex-col space-y-1">
-                  <p>Total Jobs Completed: 10</p>
+                  <p>Total Tasks Completed: {user?.tasks.length}</p>
                   <p>Average Rating: 4.8/5</p>
-                  <p>Feedback Received: 5</p>
+                  <p>Feedback Received: 0</p>
                 </div>
               )}
             </div>
           </div>
           <div className="space-y-4">
             <h2 className="lg:text-[18px] font-semibold">User Details</h2>
-
             <p>Username: {user?.username ? user.username : "N/A"}</p>
             <p>Phone: {user?.phone ? user.phone : "N/A"}</p>
             <p>Address: {user?.address ? user.address : "N/A"}</p>
-            <p>
-              Member Since: {user?.member_since ? user.member_since : "N/A"}
-            </p>
-            <p>
-              Payment Method:{" "}
-              {user?.payment_method ? user.payment_method : "N/A"}
-            </p>
-            <p>
-              Payment Status:{" "}
-              {user?.payment_status ? user.payment_status : "N/A"}
-            </p>
           </div>
         </div>
 
