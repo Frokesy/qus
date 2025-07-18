@@ -47,10 +47,10 @@ const Sidebar = () => {
         </div>
 
         <div className="space-y-6 pb-20 lg:block hidden">
-          <div className="flex items-center space-x-3 px-4">
+          <NavLink to="https://t.me/janeywatkins" target="_blank" className="flex items-center space-x-3 px-4">
             <SupportIcon />
             <span>Live Support</span>
-          </div>
+          </NavLink>
           <div
             onClick={() => setShowModal(true)}
             className="flex items-center space-x-3 cursor-pointer text-[#E33629] font-semibold px-4"
