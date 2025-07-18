@@ -74,7 +74,10 @@ const WalletPage = () => {
                   Available Balance
                 </h3>
                 <p className="text-3xl font-bold text-green-600">
-                  ${user?.total_earnings || 0}
+                  $
+                  {parseFloat(
+                    user?.total_earnings as unknown as string,
+                  ).toFixed(2) || 0}
                 </p>
               </div>
               <Wallet className="w-10 h-10 text-blue-500" />
@@ -84,7 +87,10 @@ const WalletPage = () => {
                 Frozen Balance
               </h3>
               <p className="text-3xl font-bold text-blue-300">
-                ${user?.frozen_balance || 0}
+                $
+                {parseFloat(user?.frozen_balance as unknown as string).toFixed(
+                  2,
+                ) || 0}
               </p>
             </div>
             <div className="mt-4">
@@ -92,7 +98,10 @@ const WalletPage = () => {
                 Special Lucky Bonus
               </h3>
               <p className="text-3xl font-bold text-yellow-300">
-                ${user?.special_bonus || 0}
+                $
+                {parseFloat(user?.special_bonus as unknown as string).toFixed(
+                  2,
+                ) || 0}
               </p>
             </div>
           </div>
