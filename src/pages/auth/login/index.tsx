@@ -166,6 +166,14 @@ const Login = () => {
             </button>
           </div>
         </div>
+        <div className="text-right mt-2">
+          <NavLink
+            to="/forgot-password"
+            className="text-sm text-blue-400 underline"
+          >
+            Forgot password?
+          </NavLink>
+        </div>
         <div className="flex mt-[15vh] items-end space-x-3">
           <h2>Don't have an account?</h2>
           <NavLink to="/signup" className="text-[#007bff] underline">

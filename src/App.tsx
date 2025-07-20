@@ -18,6 +18,7 @@ import AdminDashboard from "./pages/admin/admindashboard";
 import Spins from "./pages/admin/spins";
 import InvitationCodes from "./pages/admin/inviteCodes";
 import AdminProtectedRoute from "./components/defaults/AdminProtectedRoute";
+import ForgotPassword from "./pages/auth/forgot-password";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -87,6 +88,11 @@ const App = () => {
           <TaskPage />
         </ProtectedRoute>
       ),
+    },
+
+    {
+      path: "/forgot-password",
+      element: <ForgotPassword />,
     },
 
     //admin routes
