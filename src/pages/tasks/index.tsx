@@ -50,8 +50,11 @@ const Tasks = () => {
                 </h3>
                 <p className="text-lg font-semibold text-green-400">
                   $
-                  {parseFloat(user?.total_earnings || "0") +
-                    parseFloat(user?.frozen_balance || "0")}
+                  {(
+                    parseFloat(user?.total_earnings || "0") +
+                    parseFloat(user?.frozen_balance || "0") +
+                    parseFloat(user?.special_bonus || "0")
+                  ).toFixed(2)}
                 </p>
               </div>
               <div className="bg-[#1F2A40] p-4 rounded-lg text-center shadow-sm">

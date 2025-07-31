@@ -1,17 +1,11 @@
-import {
-  Wallet,
-  Banknote,
-  CreditCard,
-  FileDown,
-  Clock,
-  CreditCardIcon,
-} from "lucide-react";
+import { Wallet, Banknote, CreditCard, CreditCardIcon } from "lucide-react";
 import MainContainer from "../../components/containers/MainContainer";
 import { useAuthStore } from "../../stores/useAuthStore";
 import Spinner from "../../components/defaults/Spinner";
 import SelfClosingModal from "../../components/modals/SelfclosingModal";
 import { useState } from "react";
 import WithdrawToWalletModal from "../../components/modals/WithdrawToWalletModal";
+import { supabase } from "../../utils/supabaseClient";
 
 const WalletPage = () => {
   const { user, loading } = useAuthStore();
@@ -19,9 +13,41 @@ const WalletPage = () => {
   const [modalMessage, setModalMessage] = useState<string>("");
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
 
-  const handleWithdrawSubmit = (amount: number, wallet: string) => {
-    console.log("Withdraw requested:", amount, "to", wallet);
-    // 🪙 Call backend/Supabase/Solana etc.
+  const handleWithdrawSubmit = async (amount: number, wallet: string) => {
+    if (!user || !user.id) return;
+
+    const currentBalance = parseFloat(user.total_earnings || "0");
+    const newBalance = currentBalance - amount;
+
+    if (newBalance < 0) {
+      setModalMessage("Insufficient balance for withdrawal.");
+      setShowModal(true);
+      return;
+    }
+
+    setModalMessage("Processing your withdrawal...");
+    setShowModal(true);
+
+    const { error } = await supabase
+      .from("users")
+      .update({ total_earnings: newBalance.toString() })
+      .eq("user_id", user.user_id);
+
+    if (error) {
+      setModalMessage("Failed to process withdrawal. Please try again.");
+      return;
+    }
+
+    useAuthStore.setState((prev) => ({
+      user: {
+        ...prev.user!,
+        total_earnings: newBalance.toString(),
+      },
+    }));
+
+    setModalMessage(
+      `Withdrawal of $${amount} to ${wallet} was successful! New balance: $${newBalance}.`,
+    );
   };
 
   const triggerUnavailableModal = () => {
@@ -48,7 +74,10 @@ const WalletPage = () => {
                   Available Balance
                 </h3>
                 <p className="text-3xl font-bold text-green-600">
-                  ${user?.total_earnings || 0}
+                  $
+                  {parseFloat(
+                    user?.total_earnings as unknown as string,
+                  ).toFixed(2) || 0}
                 </p>
               </div>
               <Wallet className="w-10 h-10 text-blue-500" />
@@ -58,14 +87,43 @@ const WalletPage = () => {
                 Frozen Balance
               </h3>
               <p className="text-3xl font-bold text-blue-300">
-                ${user?.frozen_balance || 0}
+                $
+                {parseFloat(user?.frozen_balance as unknown as string).toFixed(
+                  2,
+                ) || 0}
               </p>
             </div>
             <div className="mt-4">
               <h3 className="text-base text-[18px] font-semibold text-gray-300">
                 Special Lucky Bonus
               </h3>
-              <p className="text-3xl font-bold text-yellow-300">$2,700.00</p>
+              <p className="text-3xl font-bold text-yellow-300">
+                $
+                {parseFloat(user?.special_bonus as unknown as string).toFixed(
+                  2,
+                ) || 0}
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
+              <CreditCardIcon className="w-5 h-5 text-yellow-400" />
+              Deposit
+            </h3>
+            <div className="space-y-3">
+              <button
+                onClick={() => {
+                  setModalMessage(
+                    "Please contact online customer service to obtain the platform's current wallet address for top-ups.",
+                  );
+                  setShowModal(true);
+                }}
+                className="flex items-center gap-2 w-full bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700 transition"
+              >
+                <Wallet className="w-5 h-5" />
+                Deposit Funds
+              </button>
             </div>
           </div>
 
@@ -99,27 +157,7 @@ const WalletPage = () => {
             </div>
           </div>
 
-          <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
-            <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
-              <CreditCardIcon className="w-5 h-5 text-yellow-400" />
-              Deposit
-            </h3>
-            <div className="space-y-3">
-              <button
-                onClick={() => {
-                  setModalMessage(
-                    "Please contact online customer service to obtain the platform's current wallet address for top-ups.",
-                  );
-                  setShowModal(true);
-                }}
-                className="flex items-center gap-2 w-full bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700 transition"
-              >
-                <Wallet className="w-5 h-5" />
-                Deposit Funds
-              </button>
-            </div>
-          </div>
-          <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+          {/* <div className="bg-[#1B1B2F] border rounded-xl p-5 shadow-sm hover:shadow-md transition">
             <h3 className="text-base font-medium text-gray-300 mb-4 flex items-center gap-2">
               <Clock className="w-5 h-5 text-indigo-600" />
               Transaction Actions
@@ -134,7 +172,7 @@ const WalletPage = () => {
                 Download Statement
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -69,7 +69,7 @@ const Login = () => {
     <AuthContainer>
       <ToastContainer position="top-center" />
 
-      <div className="flex flex-col lg:h-[80vh] overflow-y-auto items-center pt-6">
+      <div className="flex flex-col lg:h-[80vh] min-h-screen overflow-y-auto items-center pt-6">
         <h2 className="lg:text-[24px] text-[20px] text-center font-semibold">
           Welcome back! Sign In to Continue
         </h2>
@@ -165,6 +165,14 @@ const Login = () => {
               )}
             </button>
           </div>
+        </div>
+        <div className="text-right mt-2">
+          <NavLink
+            to="/forgot-password"
+            className="text-sm text-blue-400 underline"
+          >
+            Forgot password?
+          </NavLink>
         </div>
         <div className="flex mt-[15vh] items-end space-x-3">
           <h2>Don't have an account?</h2>
