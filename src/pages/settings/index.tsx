@@ -34,7 +34,7 @@ const Settings = () => {
             </div>
           </NavLink>
           <NavLink
-            to="https://t.me/janeywatkins"
+            to="https://t.me/+12016095017"
             target="_blank"
             className="flex items-center justify-between border-b-2 border-[#ccc] pb-4"
           >
