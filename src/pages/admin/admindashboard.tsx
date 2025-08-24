@@ -24,7 +24,7 @@ const AdminDashboard = () => {
 
   const deleteUser = async (userId: string) => {
     const confirm = window.confirm(
-      "Are you sure you want to delete this user?",
+      "Are you sure you want to delete this user?"
     );
     if (!confirm) return;
 
@@ -40,12 +40,12 @@ const AdminDashboard = () => {
   const handleInputChange = (
     userId: string,
     field: keyof CustomUser,
-    value: string,
+    value: string
   ) => {
     setUsers((prev) =>
       prev.map((user) =>
-        user.id === userId ? { ...user, [field]: value } : user,
-      ),
+        user.id === userId ? { ...user, [field]: value } : user
+      )
     );
   };
 
@@ -71,7 +71,10 @@ const AdminDashboard = () => {
 
   return (
     <AdminContainer>
-      <h1 className="text-white text-3xl font-bold mb-8">Admin Dashboard</h1>
+      <div className="flex justify-between">
+        <h1 className="text-white text-3xl font-bold mb-8">Admin Dashboard</h1>
+        <p className="text-[#fff]">Total Users: {users.length}</p>
+      </div>
 
       {loading ? (
         <p className="text-white text-lg">Loading users...</p>
@@ -108,7 +111,7 @@ const AdminDashboard = () => {
                         handleInputChange(
                           user.id,
                           field as keyof CustomUser,
-                          e.target.value,
+                          e.target.value
                         )
                       }
                       className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555] focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -148,7 +151,7 @@ const AdminDashboard = () => {
                       handleInputChange(
                         user.id,
                         "total_earnings",
-                        e.target.value,
+                        e.target.value
                       )
                     }
                     className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"
@@ -165,7 +168,7 @@ const AdminDashboard = () => {
                       handleInputChange(
                         user.id,
                         "special_bonus",
-                        e.target.value,
+                        e.target.value
                       )
                     }
                     className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"
@@ -182,7 +185,7 @@ const AdminDashboard = () => {
                       handleInputChange(
                         user.id,
                         "frozen_balance",
-                        e.target.value,
+                        e.target.value
                       )
                     }
                     className="w-full px-3 py-2 rounded bg-[#1F2937] text-white border border-[#555]"

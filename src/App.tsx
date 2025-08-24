@@ -20,6 +20,7 @@ import InvitationCodes from "./pages/admin/inviteCodes";
 import AdminProtectedRoute from "./components/defaults/AdminProtectedRoute";
 import ForgotPassword from "./pages/auth/forgot-password";
 import UpdatePassword from "./pages/auth/update-password";
+import AdminSettings from "./pages/admin/settings";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -125,6 +126,14 @@ const App = () => {
       element: (
         <AdminProtectedRoute>
           <InvitationCodes />
+        </AdminProtectedRoute>
+      ),
+    },
+    {
+      path: "/admin/settings",
+      element: (
+        <AdminProtectedRoute>
+          <AdminSettings />
         </AdminProtectedRoute>
       ),
     },

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import LogoutModal from "../modals/LogoutModal";
-import { Avatar, DashboardIcon, LogoutIcon, TaskIcon } from "../svgs/Icons";
+import {
+  Avatar,
+  DashboardIcon,
+  LogoutIcon,
+  SettingsIcon,
+  TaskIcon,
+} from "../svgs/Icons";
 import { NavLink } from "react-router-dom";
 
 interface Props {
@@ -39,11 +45,11 @@ const AdminContainer = ({ children }: Props) => {
               <span>Spins</span>
             </NavLink>
             <NavLink
-              to="/admin/inviteCodes"
+              to="/admin/settings"
               className="flex flex-col lg:flex-row lg:items-start items-center space-x-0 lg:space-x-3 space-y-1 lg:space-y-0 cursor-pointer px-2"
             >
-              <TaskIcon />
-              <span>Invite Codes</span>
+              <SettingsIcon />
+              <span>Settings</span>
             </NavLink>
           </div>
 
