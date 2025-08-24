@@ -2,13 +2,35 @@ import { NavLink } from "react-router-dom";
 import MainContainer from "../../components/containers/MainContainer";
 import { CaretDown } from "../../components/svgs/Icons";
 import LogoutModal from "../../components/modals/LogoutModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../../utils/supabaseClient";
+import { toast, ToastContainer } from "react-toastify";
 
 const Settings = () => {
   const [showModal, setShowModal] = useState(false);
+  const [link, setLink] = useState("");
+
+  useEffect(() => {
+    const fetchLink = async () => {
+      const { data, error } = await supabase
+        .from("admin")
+        .select("live_support_link")
+        .single();
+
+      if (error) {
+        console.error(error);
+        toast.error("Failed to fetch support link");
+      } else if (data) {
+        setLink(data.live_support_link || "");
+      }
+    };
+
+    fetchLink();
+  }, []);
 
   return (
     <MainContainer>
+      <ToastContainer />
       <div className="h-[80vh] text-[#fff]">
         <h1 className="lg:text-[30px] text-[20px] font-semibold">Settings</h1>
 
@@ -34,7 +56,7 @@ const Settings = () => {
             </div>
           </NavLink>
           <NavLink
-            to="https://t.me/janeywatkins"
+            to={link}
             target="_blank"
             className="flex items-center justify-between border-b-2 border-[#ccc] pb-4"
           >
